@@ -7,10 +7,12 @@ import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import com.techelevator.projects.model.DailyWeather;
 import com.techelevator.projects.model.DailyWeatherDAO;
 
+@Component
 public class JDBCDailyWeatherDAO implements DailyWeatherDAO {
 	
 	private JdbcTemplate jdbcTemplate;

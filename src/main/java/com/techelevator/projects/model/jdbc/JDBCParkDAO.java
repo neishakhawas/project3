@@ -1,31 +1,42 @@
 package com.techelevator.projects.model.jdbc;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import com.techelevator.projects.model.Park;
 import com.techelevator.projects.model.ParkDAO;
 
+
+@Component
 public class JDBCParkDAO implements ParkDAO {
 	
 private JdbcTemplate jdbcTemplate;
+private ParkDAO parkDao;
 	
-	public JDBCParkDAO(DataSource dataSource) {
+	@Autowired
+	public JDBCParkDAO(BasicDataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
 	@Override
 	public List<Park> getDetailedParkInformation() {
 		List<Park> allParks = new ArrayList<Park>();
-		String sql_query = "SELECT * from park";
+		String sql_query = "SELECT * FROM park; ";
+		
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sql_query);
+		
 		while (result.next()) {
-			Park parkInfo = mapRowToPark(result);
+			Park parkInfo = new Park();
+			parkInfo = mapRowToPark(result);
 			allParks.add(parkInfo);
 		}
 		return allParks;

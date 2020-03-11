@@ -17,47 +17,38 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.techelevator.dao.model.Actor;
 import com.techelevator.projects.model.DailyWeatherDAO;
 import com.techelevator.projects.model.Park;
 import com.techelevator.projects.model.ParkDAO;
 import com.techelevator.projects.model.Survey;
-import com.techelevator.projects.model.SurveyDAO;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
 	private ParkDAO parkDAO;
-	private SurveyDAO surveyDAO;
-	private DailyWeatherDAO dailyWeatherDAO;
 	
-	
-	@RequestMapping(path = "/", method = RequestMethod.GET)
-	public String goHomePage() {
+	@RequestMapping(path = {"/","/homepage"}, method = RequestMethod.GET)
+	public String goHomePage(ModelMap parksMap) {
+		
+		List<Park> listOfParks= parkDAO.getDetailedParkInformation();
+		
+		parksMap.put("parkslist", listOfParks);
 		
 		
-		return "homePage";
+		return "homepage";
 	}
 	
-	
-	@RequestMapping(path = "homePage", method = RequestMethod.POST)
-	public String goHomePage(HttpSession userSesh, @RequestParam String tempChoice) {
-		
-		userSesh.setAttribute("temp", tempChoice);
-		return "redirect:detailspage";
-	}
-	
-	
-	
-	@RequestMapping(path="detailsPage", method = RequestMethod.GET)
-	public String goDetailsPage(HttpSession userSesh, ModelMap parksMap) {
 
-		List<Park> listOfParks= parkDAO.getDetailedParkInformation()
+	@RequestMapping(path="detailsPage", method = RequestMethod.GET)
+	public String goDetailsPage(ModelMap parksMap, @RequestParam String tempChoice) {
+
+		List<Park>listOfParks= parkDAO.getDetailedParkInformation();
 		
-		modelMap.put("actors", listOfActors);
+		parksMap.put("parkslist", listOfParks);
 		
-		if(userSesh.getAttribute("tempChoice")=="C") { 
+		if(tempChoice =="C") { 
+			// conversion method
 			
 		}
 		
@@ -66,7 +57,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(path="detailsPage", method = RequestMethod.POST)
-	public String startSurvey(HttpSession userSesh) {
+	public String startSurvey() {
 		
 		return "redirect:survey";
 	}
@@ -86,7 +77,7 @@ public class HomeController {
 									BindingResult userEntry, RedirectAttributes flash) {
 		
 		if(userEntry.hasErrors()) {
-			flash.addAllAttributes("survey", userSurvey);
+			flash.addAttribute("survey", userSurvey);
 			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "survey" + userEntry);
 			
 			return "survey";
