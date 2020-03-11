@@ -10,6 +10,10 @@
 
 <form action = "greeting" method = "POST" style = "background-color: hotpink">
 <input type = "text" name = "username" value = "username">
+
+
+
+
 <select name="tempChoice" id="tempChoice">
 		<option value="F">Farenheit</option>
 		<option value="C">Celsius</option>
