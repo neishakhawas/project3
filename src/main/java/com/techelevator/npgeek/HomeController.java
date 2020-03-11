@@ -1,9 +1,9 @@
 package com.techelevator.npgeek;
 
-
-
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -27,13 +27,23 @@ public class HomeController {
 	
 	@Autowired
 	private ParkDAO parkDAO;
+	@Autowired
+	private SurveyDAO surveyDAO;
+	@Autowired
+	private DailyWeatherDAO dailyWeatherDAO;
 	
-	@RequestMapping(path = {"/","/homepage"}, method = RequestMethod.GET)
-	public String goHomePage(ModelMap parksMap) {
+	
+	@RequestMapping(path = "/homePage", method = RequestMethod.GET)
+	public String goHomePage(ModelMap map) {
+		List<Park> allParks = parkDAO.getDetailedParkInformation();
+		map.addAttribute("allParks", allParks);
 		
-		List<Park> listOfParks= parkDAO.getDetailedParkInformation();
-		
-		parksMap.put("parkslist", listOfParks);
+		return "homepage";
+	}
+	
+	
+	@RequestMapping(path = "homePage", method = RequestMethod.POST)
+	public String goHomePage(HttpSession userSesh, @RequestParam String tempChoice) {
 		
 		
 		return "homepage";
@@ -43,9 +53,9 @@ public class HomeController {
 	@RequestMapping(path="detailsPage", method = RequestMethod.GET)
 	public String goDetailsPage(ModelMap parksMap, @RequestParam String tempChoice) {
 
-		List<Park>listOfParks= parkDAO.getDetailedParkInformation();
+		List<Park> listOfParks= parkDAO.getDetailedParkInformation();
 		
-		parksMap.put("parkslist", listOfParks);
+	
 		
 		if(tempChoice =="C") { 
 			// conversion method
