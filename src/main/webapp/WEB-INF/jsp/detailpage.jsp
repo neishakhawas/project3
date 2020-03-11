@@ -11,9 +11,14 @@ inspiration quote, inspirational quote source, park description, entry fee, numb
 	<div class="product-description">
 		<h3>"${park.parkName}"</h3>
 		
-		<p>${park.description}<p>
-		<p>${park.state} , ${park.elevationInFeet}, ${park.milesOfTrail}, ${park.numberOfCampsites}, ${park.climate}, ${park.yearFounded}</p>
-		<p>${park.inspirationalQuote}, ${park.inspirationalQuoteSource}</p>
+		<p>${park.description}</p>
+		<p>State: ${park.state}</p>
+		<p>Elevation: ${park.elevationInFeet} ft</p>
+		<p> Trail Mileage: ${park.milesOfTrail} </p>
+		<p>Number of Campsites: ${park.numberOfCampsites}</p>
+		<p> ${park.climate}, </p>
+		<p>${park.yearFounded}</p>
+		<p>${park.inspirationalQuote}  - ${park.inspirationalQuoteSource}</p>
 
 
 <a href = "/homepage">
