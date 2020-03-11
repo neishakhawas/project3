@@ -12,14 +12,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.techelevator.projects.model.Park;
+
 @Controller
 public class HomeController {
 	
 
 	
 	@RequestMapping(path = "/", method = RequestMethod.GET)
-	public String goHomePage(ModelMap parkModel) {
-		parkModel.addAttribute("parkModel", new Park());
+	public String goHomePage() {
+		
 		
 		return "homePage";
 	}
@@ -29,7 +31,6 @@ public class HomeController {
 	public String goHomePage(HttpSession userSesh, @RequestParam String tempChoice, ModelMap parkModel) {
 		
 		userSesh.setAttribute("temp", tempChoice);
-		
 		return "redirect:detailspage";
 	}
 	
@@ -37,6 +38,7 @@ public class HomeController {
 	
 	@RequestMapping(path="detailsPage", method = RequestMethod.GET)
 	public String goDetails(HttpSession userSesh) {
+		
 		
 		return "detailsPage";
 		
