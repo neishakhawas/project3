@@ -13,4 +13,9 @@
 
 
 
+<a href = "/homepage">
+		<button class = "Button"> Return Home</button>
+			</a>
+
+
 <%@include file="common/footer.jsp" %>
