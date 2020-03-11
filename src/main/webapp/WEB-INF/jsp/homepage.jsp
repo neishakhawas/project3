@@ -29,20 +29,8 @@
 				
 				
 					</div>
-				</div>
-
 			</c:forEach>
-
-
-		</div>
-
-
-
-		
-
-
-
-
+</div>
 
 
 <%@include file="common/footer.jsp" %>

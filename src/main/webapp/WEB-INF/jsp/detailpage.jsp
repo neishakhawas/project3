@@ -14,9 +14,9 @@ inspiration quote, inspirational quote source, park description, entry fee, numb
 		<p>${park.description}</p>
 		<p>State: ${park.state}</p>
 		<p>Elevation: ${park.elevationInFeet} ft</p>
-		<p> Trail Mileage: ${park.milesOfTrail} </p>
+		<p>Trail Mileage: ${park.milesOfTrail} </p>
 		<p>Number of Campsites: ${park.numberOfCampsites}</p>
-		<p> ${park.climate}, </p>
+		<p>${park.climate}</p>
 		<p>${park.yearFounded}</p>
 		<p>${park.inspirationalQuote}  - ${park.inspirationalQuoteSource}</p>
 

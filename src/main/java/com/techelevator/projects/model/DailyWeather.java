@@ -37,5 +37,8 @@ public class DailyWeather {
 	public void setForecast(String forecast) {
 		this.forecast = forecast;
 	}
-
+	public int tempConvert(int temp) {
+		int tempInCelsius = (int) ((temp-32)*(0.5556));
+		return tempInCelsius;
+	}
 }
