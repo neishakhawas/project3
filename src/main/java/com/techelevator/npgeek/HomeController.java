@@ -13,21 +13,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping(path ="/")
 public class HomeController {
 	
 
 	
 	@RequestMapping(path = "/", method = RequestMethod.GET)
-	public String goHomePage() {
-		
+	public String goHomePage(ModelMap parkModel) {
+		parkModel.addAttribute("parkModel", new Park());
 		
 		return "homePage";
 	}
 	
 	
 	@RequestMapping(path = "homePage", method = RequestMethod.POST)
-	public String goHomePage(HttpSession userSesh, @RequestParam String tempChoice) {
+	public String goHomePage(HttpSession userSesh, @RequestParam String tempChoice, ModelMap parkModel) {
 		
 		userSesh.setAttribute("temp", tempChoice);
 		
@@ -82,6 +81,7 @@ public class HomeController {
 		return "favoriteParks";
 		
 	}
+	
 	
 	
 	
