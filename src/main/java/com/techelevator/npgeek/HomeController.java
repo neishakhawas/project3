@@ -2,9 +2,12 @@ package com.techelevator.npgeek;
 
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -14,12 +17,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.techelevator.dao.model.Actor;
+import com.techelevator.projects.model.DailyWeatherDAO;
 import com.techelevator.projects.model.Park;
+import com.techelevator.projects.model.ParkDAO;
+import com.techelevator.projects.model.Survey;
+import com.techelevator.projects.model.SurveyDAO;
 
 @Controller
 public class HomeController {
 	
-
+	@Autowired
+	private ParkDAO parkDAO;
+	private SurveyDAO surveyDAO;
+	private DailyWeatherDAO dailyWeatherDAO;
+	
 	
 	@RequestMapping(path = "/", method = RequestMethod.GET)
 	public String goHomePage() {
@@ -30,7 +42,7 @@ public class HomeController {
 	
 	
 	@RequestMapping(path = "homePage", method = RequestMethod.POST)
-	public String goHomePage(HttpSession userSesh, @RequestParam String tempChoice, ModelMap parkModel) {
+	public String goHomePage(HttpSession userSesh, @RequestParam String tempChoice) {
 		
 		userSesh.setAttribute("temp", tempChoice);
 		return "redirect:detailspage";
@@ -39,8 +51,15 @@ public class HomeController {
 	
 	
 	@RequestMapping(path="detailsPage", method = RequestMethod.GET)
-	public String goDetails(HttpSession userSesh) {
+	public String goDetailsPage(HttpSession userSesh, ModelMap parksMap) {
+
+		List<Park> listOfParks= parkDAO.getDetailedParkInformation()
 		
+		modelMap.put("actors", listOfActors);
+		
+		if(userSesh.getAttribute("tempChoice")=="C") { 
+			
+		}
 		
 		return "detailsPage";
 		
