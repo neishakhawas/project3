@@ -1,18 +1,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <c:set var="pageTitle" value="Home Page"/>
 <%@include file="common/header.jsp" %>
 
+<c:forEach var="parks" items="${allParks}">
+
+	<img src="img/parks/${fn:toLowerCase(parks.parkCode)}.jpg" alt="picture" width="25%" />
+
+	<div class="tile">
+		<p>${parks.parkName}</p>
+		<p>${parks.parkDescription}</p>
 
 
-			<c:forEach var="parks" items="${allParks}">
-				<div class="tile">
-				<p> ${parks.parkName}</p>
-				<p>${parks.parkDescription}</p>			
-				
-				
-					</div>
-			</c:forEach>
+	</div>
+</c:forEach>
 
 
 

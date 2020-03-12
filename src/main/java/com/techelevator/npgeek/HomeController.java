@@ -34,7 +34,7 @@ public class HomeController {
 	private DailyWeatherDAO dailyWeatherDAO;
 	
 	
-	@RequestMapping(path = "/homePage", method = RequestMethod.GET)
+	@RequestMapping(path = {"/homePage", "/"}, method = RequestMethod.GET)
 	public String goHomePage(ModelMap map) {
 		List<Park> allParks = parkDAO.getDetailedParkInformation();
 		map.addAttribute("allParks", allParks);
