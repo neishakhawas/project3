@@ -24,7 +24,7 @@
 			<div class="column">
 				<p class="bd-notification is-info">
 
-					<c:url var="dpu" value="detailpage">
+					<c:url var="dpu" value="detailsPage">
 						<c:param name="parkCode" value="${parks.parkCode}" />
 					</c:url>
 					<a href="${dpu}"> <img
