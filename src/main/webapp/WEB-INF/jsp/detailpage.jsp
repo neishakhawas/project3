@@ -1,14 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="pageTitle" value="Home Page" />
+<c:set var="pageTitle" value="Park Details" />
 <%@include file="common/header.jsp"%>
 
 <!--  Get park image, name, state, elevation, trail mileage, campsites, annnual visitors, climate
 inspiration quote, inspirational quote source, park description, entry fee, number of aniaml species -->
 
 <div id="park-detail">
-<<<<<<< HEAD
-	<img src="<c:url value="/images/product-images/"${park.parkCode} + ".jpg" />
+<img src="/images/product-images/${park.parkCode} + .jpg" /> 
 
 
 
@@ -20,19 +19,16 @@ inspiration quote, inspirational quote source, park description, entry fee, numb
 		<button type="submit" name="Submit"></button>
 	</form>
 
-=======
-	
->>>>>>> 575960d3d977e3638ed3d843cecad17abd12f979
 	<div class="product-description">
-		
+
 		<h3>"${park.parkName}"</h3>
-<<<<<<< HEAD
+
 
 		<p>${park.description}</p>
-=======
-		
+
+
 		<p>${park.parkDescription}</p>
->>>>>>> 575960d3d977e3638ed3d843cecad17abd12f979
+
 		<p>State: ${park.state}</p>
 		<p>Elevation: ${park.elevationInFeet} ft</p>
 		<p>Trail Mileage: ${park.milesOfTrail}</p>
@@ -41,12 +37,9 @@ inspiration quote, inspirational quote source, park description, entry fee, numb
 		<p>${park.yearFounded}</p>
 		<p>${park.entryFee}</p>
 		<p>${park.numberOfAnimalSpecies}</p>
-		<p>${park.inspirationalQuote}- ${park.inspirationalQuoteSource}</p>
+		<p>${park.inspirationalQuote}-${park.inspirationalQuoteSource}</p>
 
 
-		<a href="/homepage">
-			<button class="Button">Return Home</button>
-		</a>
 	</div>
 </div>
 
