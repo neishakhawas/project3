@@ -16,7 +16,7 @@ public class Survey {
 	private String state;
 	
 	@NotBlank(message="Activity level is required")
-	private int activityLevel;
+	private String activityLevel;
 
 	
 	
@@ -38,10 +38,10 @@ public class Survey {
 	public void setState(String state) {
 		this.state = state;
 	}
-	public int getActivityLevel() {
+	public String getActivityLevel() {
 		return activityLevel;
 	}
-	public void setActivityLevel(int activityLevel) {
+	public void setActivityLevel(String activityLevel) {
 		this.activityLevel = activityLevel;
 	}
 	

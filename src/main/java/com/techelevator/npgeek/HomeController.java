@@ -21,6 +21,7 @@ import com.techelevator.projects.model.DailyWeatherDAO;
 import com.techelevator.projects.model.Park;
 import com.techelevator.projects.model.ParkDAO;
 import com.techelevator.projects.model.Survey;
+import com.techelevator.projects.model.SurveyDAO;
 
 @Controller
 public class HomeController {
@@ -33,15 +34,16 @@ public class HomeController {
 	private DailyWeatherDAO dailyWeatherDAO;
 	
 	
-	@RequestMapping(path = "/homePage", method = RequestMethod.GET)
+	@RequestMapping(path = {"/","homepage"}, method = RequestMethod.GET)
 	public String goHomePage(ModelMap map) {
 		List<Park> allParks = parkDAO.getDetailedParkInformation();
+		
 		map.addAttribute("allParks", allParks);
 		
 		return "homepage";
+	
+	
 	}
-	
-	
 	@RequestMapping(path = "homePage", method = RequestMethod.POST)
 	public String goHomePage(HttpSession userSesh, @RequestParam String tempChoice) {
 		

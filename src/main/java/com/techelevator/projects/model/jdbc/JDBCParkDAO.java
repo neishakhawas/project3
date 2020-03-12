@@ -17,8 +17,7 @@ import com.techelevator.projects.model.ParkDAO;
 
 @Component
 public class JDBCParkDAO implements ParkDAO {
-	
-	
+
 	
 private JdbcTemplate jdbcTemplate;
 private ParkDAO parkDao;
@@ -31,7 +30,7 @@ private ParkDAO parkDao;
 	@Override
 	public List<Park> getDetailedParkInformation() {
 		List<Park> allParks = new ArrayList<Park>();
-		String sql_query = "SELECT * FROM park; ";
+		String sql_query = "SELECT * FROM park;";
 		
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sql_query);
 		

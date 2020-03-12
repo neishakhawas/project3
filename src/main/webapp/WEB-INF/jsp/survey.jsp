@@ -7,7 +7,7 @@
 <title>Submit a Review</title>
 </head>
 <body>
-	<form action="greeting" method="POST" style="background-color: hotpink">
+	<form action="survey" method="POST" style="background-color: hotpink">
 		<input class="input is-primary" type="text" name="email" value="email">
 		<select name="activityLevel" id="activityLevel">
 			<option value="1">Inactive</option>
