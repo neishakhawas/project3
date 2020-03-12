@@ -36,34 +36,20 @@ public class HomeController {
 	
 	@RequestMapping(path = {"/homePage", "/"}, method = RequestMethod.GET)
 	public String goHomePage(ModelMap map) {
-		List<Park> allParks = parkDAO.getDetailedParkInformation();
+		List<Park> allParks = parkDAO.getAllParkInformation();
 		map.addAttribute("allParks", allParks);
 		
 		return "homepage";
 	}
 	
 	
-	@RequestMapping(path = "homePage", method = RequestMethod.POST)
-	public String goHomePage(HttpSession userSesh, @RequestParam String tempChoice) {
-		
-		userSesh.setAttribute("temp", tempChoice);
-		return "redirect:detailspage";
-	}
-	
-	
-	
 	@RequestMapping(path="detailsPage", method = RequestMethod.GET)
-	public String goDetailsPage(HttpSession userSesh, ModelMap parksMap) {
+	public String goDetailsPage(ModelMap map, String parkCode) {
 
-		List<Park> listOfParks= parkDAO.getDetailedParkInformation();
-		
+		Park onePark = parkDAO.getParkInformationByParkCode(parkCode);
+		map.addAttribute("park", onePark);
 	
-		
-		if(userSesh.getAttribute("tempChoice")=="C") { 
-			
-		}
-		
-		return "detailsPage";
+		return "detailpage";
 		
 	}
 	

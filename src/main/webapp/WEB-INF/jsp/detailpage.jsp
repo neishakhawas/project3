@@ -7,11 +7,12 @@
 inspiration quote, inspirational quote source, park description, entry fee, number of aniaml species -->
 
 <div id="park-detail">
-	<img src="<c:url value="/images/product-images/"${park.parkCode} + ".jpg" />
+	
 	<div class="product-description">
+		
 		<h3>"${park.parkName}"</h3>
 		
-		<p>${park.description}</p>
+		<p>${park.parkDescription}</p>
 		<p>State: ${park.state}</p>
 		<p>Elevation: ${park.elevationInFeet} ft</p>
 		<p>Trail Mileage: ${park.milesOfTrail} </p>
