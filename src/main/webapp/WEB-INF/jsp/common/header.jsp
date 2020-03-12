@@ -21,9 +21,9 @@
 		</div>
 		<div id="navbarBasicExample" class="navbar-menu">
 			<div class="navbar-start">
-				<a href="/" class="navbar-item"> Home </a> 
-				<a href="/survey" class="navbar-item">
-					Survey </a>
+				<a href="/homepage" class="navbar-item"> Home </a> 
+				<a href="/survey" class="navbar-item"> Survey </a>
+					
 			</div>
 		</div>
 

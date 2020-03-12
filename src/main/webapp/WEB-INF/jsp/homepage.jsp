@@ -8,7 +8,9 @@
 
 <c:forEach var="parks" items="${allParks}">
 
-
+<c:url var="dpu" value="detailspage">
+    <c:param name="parkCode" value="${parks.parkCode}"/>
+    </c:url>
 
 	<div class="column">
 		<h2 class="title">${parks.parkName}</h2>
@@ -17,22 +19,20 @@
 		<div class="columns is-mobile">
 			<div class="column">
 				<p class="bd-notification is-info">
-				<c:url var="parkDetailPage" value="/parkdetail">
-					<img src="img/parks/${fn:toLowerCase(parks.parkCode)}.jpg"
-						alt="picture" width="45%" /></c:url>
+				<a href="/detail?id=${park.parkCode}">
+					<img
+						alt="picture" width="45%" src="<c:url value="img/parks/${fn:toLowerCase(parks.parkCode)}.jpg"/>" />	
+					
+						</a>
 				</p>
 			</div>
 			<div class="column">
 				<p class="bd-notification is-info"><p class="content">${parks.parkDescription}</p></p>
-
 
 			</div>
 		</div>
 	</div>
 
 </c:forEach>
-
-
-
 
 <%@include file="common/footer.jsp"%>
