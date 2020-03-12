@@ -24,7 +24,7 @@ private JdbcTemplate jdbcTemplate;
 	}
 
 	@Override
-	public List<Park> getDetailedParkInformation() {
+	public List<Park> getAllParkInformation() {
 		List<Park> allParks = new ArrayList<Park>();
 		String sql_query = "SELECT * from park";
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sql_query);
@@ -33,6 +33,16 @@ private JdbcTemplate jdbcTemplate;
 			allParks.add(parkInfo);
 		}
 		return allParks;
+	}
+	
+	@Override
+	public Park getParkInformationByParkCode(String parkCode) {
+		String sql_query = "SELECT * from park WHERE parkcode = ?";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sql_query, parkCode);
+		while(result.next()) {
+		return mapRowToPark(result);
+	}
+		return null;
 	}
 	
 	
@@ -55,5 +65,7 @@ private JdbcTemplate jdbcTemplate;
 		parkInfo.setNumberOfAnimalSpecies(result.getInt("numberofanimalspecies"));
 		return parkInfo;
 	}
+
+	
 
 }
