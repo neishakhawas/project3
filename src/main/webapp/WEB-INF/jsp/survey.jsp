@@ -7,7 +7,7 @@
 <title>Submit a Review</title>
 </head>
 <body>
-	<form action="greeting" method="POST" style="background-color: hotpink">
+	<form action="favoriteparks" method="POST" style="background-color: hotpink">
 		<input class="input is-primary" type="text" name="email" value="email">
 		<select name="activityLevel" id="activityLevel">
 			<option value="1">Inactive</option>
@@ -68,6 +68,19 @@
 			<option value="WI">Wisconsin</option>
 			<option value="WY">Wyoming</option>
 		</select>
+		
+		<select name="parkName" id="parkName" placeholder = "Park Name">
+			<option value="CVNP">Cuyahoga Valley National Park</option>
+			<option value="ENP">Everglades National Park</option>
+			<option value="GCNP">Grand Canyon National Park</option>
+			<option value="GNP">Glacier National Park</option>
+			<option value="GSMNP">Great Smoky Mountains National Park</option>
+			<option value="GTNP">Grand Teton National Park</option>
+			<option value="MRNP">Mount Rainier Natioanl Park</option>
+			<option value="RMNP">Rocky Mountain National Park</option>
+			<option value="YNP">Yellowstone National Park</option>
+			<option value="YNP2">Yosemite National Park</option>
+		</select> 
 
 		<!-- local date<input type = "date" name = "date" value = new > -->
 
