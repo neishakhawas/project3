@@ -46,30 +46,30 @@ public class HomeController {
     @RequestMapping(path="detailsPage", method = RequestMethod.GET)
     public String goDetailsPage(ModelMap map, String parkCode) {
 
-        Park onePark = parkDAO.getParkInformationByParkCode(parkCode);
-        map.addAttribute("park", onePark);
-        
-        List<DailyWeather> weather = dailyWeatherDAO.getDailyWeather(parkCode);
-        map.addAttribute("weather", weather);
-    
-        return "detailpage";
-        
-    }
-    
-    @RequestMapping(path="detailsPage", method = RequestMethod.POST)
-    public String startSurvey(HttpSession userSesh) {
-        
-        return "redirect:survey";
-    }
-    
-    
-    @RequestMapping(path="survey", method = RequestMethod.GET)
-    public String goSurvey(HttpSession userSesh, ModelMap model) {
-        
-        model.addAttribute("survey", new Survey());
-        
-        return "survey";
-    
+		Park onePark = parkDAO.getParkInformationByParkCode(parkCode);
+		map.addAttribute("park", onePark);
+		
+		List<DailyWeather> weather = dailyWeatherDAO.getDailyWeather(parkCode);
+		map.addAttribute("weather", weather);
+	
+		return "detailpage";
+		
+	}
+	
+	@RequestMapping(path="detailsPage", method = RequestMethod.POST)
+	public String startSurvey(HttpSession userSesh) {
+		
+		return "redirect:survey";
+	}
+	
+	
+	@RequestMapping(path="survey", method = RequestMethod.GET)
+	public String goSurvey(HttpSession userSesh, ModelMap model) {
+		
+		model.addAttribute("survey", new Survey());
+		
+		return "survey";
+	
 }
     
     @RequestMapping(path="survey", method = RequestMethod.POST)
