@@ -7,6 +7,9 @@ public class DailyWeather {
 	private int low;
 	private int high;
 	private String forecast;
+	
+	
+	
 	public String getParkCode() {
 		return parkCode;
 	}

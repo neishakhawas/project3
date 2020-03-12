@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.techelevator.projects.model.DailyWeather;
 import com.techelevator.projects.model.DailyWeatherDAO;
 import com.techelevator.projects.model.Park;
 import com.techelevator.projects.model.ParkDAO;
@@ -48,6 +49,9 @@ public class HomeController {
 
 		Park onePark = parkDAO.getParkInformationByParkCode(parkCode);
 		map.addAttribute("park", onePark);
+		
+		List<DailyWeather> weather = dailyWeatherDAO.getDailyWeather(parkCode);
+		map.addAttribute("weather", weather);
 	
 		return "detailpage";
 		

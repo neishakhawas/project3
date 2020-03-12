@@ -29,7 +29,10 @@ inspiration quote, inspirational quote source, park description, entry fee, numb
 		
 		<p>${park.inspirationalQuote}  - ${park.inspirationalQuoteSource}</p>
 		<p>Entry fee: ${park.entryFee}</p>
-
+		
+		<c:forEach var="i" items="${weather}">
+		<p> ${i.forecast }</p>
+	</c:forEach>
 
 <a href = "/homepage">
 		<button class = "Button"> Return Home</button>
