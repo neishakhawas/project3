@@ -4,15 +4,22 @@
 <c:set var="pageTitle" value="Home Page"/>
 <%@include file="common/header.jsp" %>
 
+
+
 <c:forEach var="parks" items="${allParks}">
 
-	<img src="img/parks/${fn:toLowerCase(parks.parkCode)}.jpg" alt="picture" width="25%" />
+	<c:url var="parkDetailUrl" value="detailpage">
+	<c:param name="parkCode" value="${parks.parkCode}"/>
+	</c:url>
+	
+	
+	<a href="${parkDetailUrl}" > 
+	<img src="img/parks/${fn:toLowerCase(parks.parkCode)}.jpg" alt="picture" width="25%" /> </a>
 
 	<div class="tile">
 		<p>${parks.parkName}</p>
 		<p>${parks.parkDescription}</p>
-
-
+		<p>  </p>
 	</div>
 </c:forEach>
 

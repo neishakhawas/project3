@@ -17,6 +17,15 @@ public class Park {
 	private String parkDescription;
 	private int entryFee;
 	private int numberOfAnimalSpecies;
+	
+	private int surveyCount;
+	
+	public int getSurveyCount() {
+		return surveyCount;
+	}
+	public void setSurveyCount(int surveyCount) {
+		this.surveyCount = surveyCount;
+	}
 	public String getParkCode() {
 		return parkCode;
 	}

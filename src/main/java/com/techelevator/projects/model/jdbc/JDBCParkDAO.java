@@ -42,6 +42,32 @@ private ParkDAO parkDao;
 		return allParks;
 	}
 	
+
+		
+
+	@Override
+	public List<Park> getFavoritesList() {
+		
+		
+		String sqlFav ="Select parkname, count(surveyid)" + 
+				" FROM survey_result" + 
+				" Left Join park using (parkcode)" + 
+				" group by parkname" + 
+				" having count(surveyid) > 0" + 
+				" order by count(surveyid) dsc, parkname asc; ";
+		
+		SqlRowSet favSet = jdbcTemplate.queryForRowSet(sqlFav);
+		
+		List<Park> favList = new ArrayList<Park>();
+		
+		while(favSet.next()) {
+			Park tempPark = new Park();
+			tempPark = mapRowToPark(favSet);
+			favList.add(tempPark);
+		}
+		
+		return favList;
+	}
 	
 	private Park mapRowToPark(SqlRowSet result) {
 		Park parkInfo = new Park();

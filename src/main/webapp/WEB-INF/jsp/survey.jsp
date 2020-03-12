@@ -14,7 +14,7 @@
 			<option value="2">Sedentary</option>
 			<option value="3">Active</option>
 			<option value="4">Extremely Active</option>
-			<option value="5">5</option>
+			
 		</select> <select name="state" id="state">
 			<option value="AL">Alabama</option>
 			<option value="AK">Alaska</option>
@@ -69,7 +69,16 @@
 			<option value="WY">Wyoming</option>
 		</select>
 
-		<!-- local date<input type = "date" name = "date" value = new > -->
+<select name="park" id="parks">
+<c:forEach var="park" items="${listParks}">
+
+<option value="${park.parkCode}">"${park.parkname}</option>>
+
+
+</c:forEach>
+</select>		
+
+
 
 		<input class="formSubmitButton" type="submit" value="Submit Review" />
 

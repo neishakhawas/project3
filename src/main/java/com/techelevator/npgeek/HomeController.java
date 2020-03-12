@@ -44,7 +44,7 @@ public class HomeController {
 	
 	
 	}
-	@RequestMapping(path = "homePage", method = RequestMethod.POST)
+	@RequestMapping(path = "homepage", method = RequestMethod.POST)
 	public String goHomePage(HttpSession userSesh, @RequestParam String tempChoice) {
 		
 		
@@ -52,23 +52,26 @@ public class HomeController {
 	}
 	
 
-	@RequestMapping(path="detailsPage", method = RequestMethod.GET)
-	public String goDetailsPage(ModelMap parksMap, @RequestParam String tempChoice) {
+	@RequestMapping(path="detailpage", method = RequestMethod.GET)
+	public String goDetailsPage(ModelMap singlePark, @RequestParam String parkCode) {
 
 		List<Park> listOfParks= parkDAO.getDetailedParkInformation();
 		
-	
-		
-		if(tempChoice =="C") { 
-			// conversion method
+		for(int i =0; i<listOfParks.size(); i++) {
+			if (listOfParks.get(i).getParkCode()== parkCode) {
+				
+				singlePark.addAttribute("park", listOfParks.get(i)); break;
+			}
 			
 		}
 		
-		return "detailsPage";
+			
+		
+		return "detailpage";
 		
 	}
 	
-	@RequestMapping(path="detailsPage", method = RequestMethod.POST)
+	@RequestMapping(path="detailpage", method = RequestMethod.POST)
 	public String startSurvey() {
 		
 		return "redirect:survey";
@@ -76,7 +79,8 @@ public class HomeController {
 	
 	
 	@RequestMapping(path="survey", method = RequestMethod.GET)
-	public String goSurvey(HttpSession userSesh, ModelMap model) {
+	public String goSurvey( ModelMap model) {
+			
 		
 		model.addAttribute("survey", new Survey());
 		
@@ -88,12 +92,15 @@ public class HomeController {
 	public String submitSurvey(@Valid @ModelAttribute("survey") Survey userSurvey, HttpSession userSesh, 
 									BindingResult userEntry, RedirectAttributes flash) {
 		
+		
 		if(userEntry.hasErrors()) {
 			flash.addAttribute("survey", userSurvey);
 			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "survey" + userEntry);
 			
 			return "survey";
 		}
+		
+		surveyDAO.createEntry(userSurvey);
 		
 		return "redirect:favoriteParks";
 		
@@ -102,7 +109,12 @@ public class HomeController {
 	
 	
 	@RequestMapping(path="favoriteParks",method = RequestMethod.GET)
-	public String goFavoriteParks() {
+	public String goFavoriteParks(ModelMap map) {
+		
+		List<Park> favoriteList= parkDAO.getFavoritesList();
+		
+		map.addAttribute("favorite", favoriteList);
+		
 		
 		return "favoriteParks";
 		

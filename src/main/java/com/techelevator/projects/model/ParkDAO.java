@@ -6,5 +6,7 @@ public interface ParkDAO {
 
 	
 	public List<Park> getDetailedParkInformation();
+
+	List<Park> getFavoritesList();
 	
 }
