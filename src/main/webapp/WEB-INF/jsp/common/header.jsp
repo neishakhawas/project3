@@ -1,32 +1,37 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
 
 
 </head>
 <body>
-<img src="img/logo.png" height= 120>
+	<img src="img/logo.png" alt="picture" width="35%" />
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-            </div>
-        </div>
-    </div>
-    
-    
+	<nav class="navbar is-success" role="navigation" aria-label="main navigation">
+		<div class="navbar-brand">
+			<a role="button" class="navbar-burger burger" aria-label="menu"
+				aria-expanded="false" data-target="navbarBasicExample"> <span
+				aria-hidden="true"></span> <span aria-hidden="true"></span> <span
+				aria-hidden="true"></span>
+			</a>
+		</div>
+		<div id="navbarBasicExample" class="navbar-menu">
+			<div class="navbar-start">
+				<a href="/" class="navbar-item"> Home </a> 
+				<a href="/survey" class="navbar-item">
+					Survey </a>
+			</div>
+		</div>
 
-    <div class="container">
-    
-    
-   <%--  <%@include file="common/header.jspf"%> --%>
+	</nav>
+</head>
+<body>
+
+
+
+
+	<%--  <%@include file="common/header.jspf"%> --%>

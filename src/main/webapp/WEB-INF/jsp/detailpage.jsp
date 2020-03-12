@@ -11,7 +11,7 @@ inspiration quote, inspirational quote source, park description, entry fee, numb
 
 
 
-	<form action="homepage" method="POST">
+	<form action="/" method="POST">
 		<select name="tempChoice" id="tempChoice">
 			<option value="F">Farenheit</option>
 			<option value="C">Celsius</option>

@@ -25,92 +25,77 @@ import com.techelevator.projects.model.SurveyDAO;
 
 @Controller
 public class HomeController {
-	
+
 	@Autowired
 	private ParkDAO parkDAO;
 	@Autowired
 	private SurveyDAO surveyDAO;
 	@Autowired
 	private DailyWeatherDAO dailyWeatherDAO;
-	
-	
-	@RequestMapping(path = {"/homePage","/"}, method = RequestMethod.GET)
+
+	@RequestMapping(path = { "/homePage", "/" }, method = RequestMethod.GET)
 	public String goHomePage(ModelMap map) {
 		List<Park> allParks = parkDAO.getDetailedParkInformation();
 		map.addAttribute("allParks", allParks);
-		
+
 		return "homepage";
 	}
-	
-	
+
 	@RequestMapping(path = "homePage", method = RequestMethod.POST)
 	public String goHomePage(HttpSession userSesh, @RequestParam String tempChoice) {
-		
+
 		userSesh.setAttribute("temp", tempChoice);
 		return "redirect:detailspage";
 	}
-	
-	
-	
-	@RequestMapping(path="detailsPage", method = RequestMethod.GET)
+
+	@RequestMapping(path = "detailsPage", method = RequestMethod.GET)
 	public String goDetailsPage(HttpSession userSesh, ModelMap parksMap) {
 
-		List<Park> listOfParks= parkDAO.getDetailedParkInformation();
-		
-	
-		
-		if(userSesh.getAttribute("tempChoice")=="C") { 
-			
+		List<Park> listOfParks = parkDAO.getDetailedParkInformation();
+
+		if (userSesh.getAttribute("tempChoice") == "C") {
+
 		}
-		
+
 		return "detailsPage";
-		
+
 	}
-	
-	@RequestMapping(path="detailsPage", method = RequestMethod.POST)
+
+	@RequestMapping(path = "detailsPage", method = RequestMethod.POST)
 	public String startSurvey(HttpSession userSesh) {
-		
+
 		return "redirect:survey";
 	}
-	
-	
-	@RequestMapping(path="survey", method = RequestMethod.GET)
+
+	@RequestMapping(path = "survey", method = RequestMethod.GET)
 	public String goSurvey(HttpSession userSesh, ModelMap model) {
-		
+
 		model.addAttribute("survey", new Survey());
-		
+
 		return "survey";
-	
-}
-	
-	@RequestMapping(path="survey", method = RequestMethod.POST)
-	public String submitSurvey(@Valid @ModelAttribute("survey") Survey userSurvey, HttpSession userSesh, 
-									BindingResult userEntry, RedirectAttributes flash) {
-		
-		if(userEntry.hasErrors()) {
+
+	}
+
+	@RequestMapping(path = "survey", method = RequestMethod.POST)
+	public String submitSurvey(@Valid @ModelAttribute("survey") Survey userSurvey, HttpSession userSesh,
+			BindingResult userEntry, RedirectAttributes flash) {
+
+		if (userEntry.hasErrors()) {
 			flash.addAttribute("survey", userSurvey);
 			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "survey" + userEntry);
-			
+
 			return "survey";
 		}
-		
+
 		return "redirect:favoriteParks";
-		
-		
+
 	}
-	
-	
-	@RequestMapping(path="favoriteParks",method = RequestMethod.GET)
+
+	@RequestMapping(path = "favoriteParks", method = RequestMethod.GET)
 	public String goFavoriteParks() {
-		
+
 		return "favoriteParks";
-		
+
 	}
-	
-	
-	
-	
-	
-	
 
 }
