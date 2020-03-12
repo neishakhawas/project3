@@ -50,7 +50,7 @@ public class HomeController {
         map.addAttribute("park", onePark);
         
         List<DailyWeather> weather = dailyWeatherDAO.getDailyWeather(parkCode);
-        
+        map.addAttribute("weather", weather);
     
         return "detailpage";
         

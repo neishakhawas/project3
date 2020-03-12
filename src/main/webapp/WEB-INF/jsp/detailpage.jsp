@@ -9,15 +9,7 @@
 <c:set var="pageTitle" value="Park Details" />
 <%@include file="common/header.jsp"%>
 
-<!--  Get park image, name, state, elevation, trail mileage, campsites, annnual visitors, climate
-inspiration quote, inspirational quote source, park description, entry fee, number of aniaml species -->
-<form action="/" method="POST">
-	<select name="tempChoice" id="tempChoice">
-		<option value="F">Farenheit</option>
-		<option value="C">Celsius</option>
-	</select>
-	<button type="submit" name="Submit"></button>
-</form>
+
 
 <div id="park-detail">
 
@@ -39,15 +31,26 @@ inspiration quote, inspirational quote source, park description, entry fee, numb
 			src="<c:url value="/img/parks/${fn:toLowerCase(park.parkCode)}.jpg" />" />
 
 
+		<form action="/" method="POST">
+			<select name="tempChoice" id="tempChoice">
+				<option value="F">Farenheit</option>
+				<option value="C">Celsius</option>
+			</select>
+			<button type="submit" name="Submit"></button>
+		</form>
 
 
-		<p>Day: ${i.day} - ${i.forecast } Low: ${i.low} High: ${i.high}</p>
 
 
 
-		<c:forEach var="i" items="${weather } ">
-			<img src="<c:url value="/img/weather/${i.forecast}.png"/>" />
+
+		<c:forEach var="i" items="${weather}">
+			<img src="<c:url value="/img/weather/${i.forecast}.png"/>" width="10%"/>
+			<p>Day: ${i.day} - ${i.forecast } Low: ${i.low} High: ${i.high}</p>
 		</c:forEach>
+
+
+
 		<article class="message is-success">
 			<div class="message-header is-half">
 				<p>Description</p>
@@ -121,8 +124,9 @@ inspiration quote, inspirational quote source, park description, entry fee, numb
 						<td>${park.annualVisitorCount}</td>
 					</tr>
 					<tr>
-						<td>${park.inspirationalQuote}-</td>
-						<td>${park.inspirationalQuoteSource}</td>
+						<td>${park.inspirationalQuote}</td>
+
+						<td>-${park.inspirationalQuoteSource}</td>
 					</tr>
 
 
@@ -139,7 +143,6 @@ inspiration quote, inspirational quote source, park description, entry fee, numb
 
 	</div>
 </div>
-
 
 
 
