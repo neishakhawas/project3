@@ -21,7 +21,7 @@ inspiration quote, inspirational quote source, park description, entry fee, numb
 
 <div id="park-detail">
 
-	<div class="product-description">
+	<div class="park-description">
 
 
 
@@ -34,47 +34,101 @@ inspiration quote, inspirational quote source, park description, entry fee, numb
 			</div>
 		</section>
 
+
 		<img
 			src="<c:url value="/img/parks/${fn:toLowerCase(park.parkCode)}.jpg" />" />
 
-<article class="message">
-  <div class="message-header">
-    <p>Description</p>
-    <button class="delete" aria-label="delete"></button>
-  </div>
-  <div class="message-body is-half">
-${park.parkDescription}  </div>
-</article>
+
+
+
+		<p>Day: ${i.day} - ${i.forecast } Low: ${i.low} High: ${i.high}</p>
+
+
+
+		<c:forEach var="i" items="${weather } ">
+			<img src="<c:url value="/img/weather/${i.forecast}.png"/>" />
+		</c:forEach>
+		<article class="message is-success">
+			<div class="message-header is-half">
+				<p>Description</p>
+
+			</div>
+			<div class="message-body is-half">${park.parkDescription}</div>
+		</article>
 		<p class="content is-one-third"></p>
 
 		<div>
+			<table class="table">
+				<tbody>
+					<tr>
+						<td>State:</td>
+						<td>${park.state}</td>
+					</tr>
+					<tr>
+						<td>Acreage:</td>
+						<td>${park.acreage}</td>
+					</tr>
+					<tr>
+						<td>Elevation:</td>
+						<td>${park.elevationInFeet}ft</td>
+					</tr>
+					<tr>
+						<td>Trail Mileage:</td>
+						<td>${park.milesOfTrail}</td>
+					</tr>
+					<tr>
+						<td>Number of Campsites:</td>
+						<td>${park.numberOfCampsites}</td>
+					</tr>
+					<tr>
+						<td>Climate:</td>
+						<td>${park.climate}</td>
+					</tr>
+					<tr>
+						<td>Year Founded:</td>
+						<td>${park.yearFounded}</td>
+					</tr>
+					<tr>
+						<td>Entry Fee:</td>
+						<td>${park.entryFee}</td>
+					</tr>
+					<tr>
+						<td>Number of Animal Species:</td>
+						<td>${park.numberOfAnimalSpecies}</td>
+					</tr>
+					<tr>
+						<td>Trail Mileage:</td>
+						<td>${park.milesOfTrail}</td>
+					</tr>
+					<tr>
+						<td>Number of Camp sites:</td>
+						<td>${park.numberOfCampsites}</td>
+					</tr>
+					<tr>
+						<td>Climate:</td>
+						<td>${park.climate}</td>
+					</tr>
+					<tr>
+						<td>Park founded in:</td>
+						<td>${park.yearFounded}</td>
+					</tr>
+					<tr>
+						<td>Number of Animal Species:</td>
+						<td>${park.numberOfAnimalSpecies}</td>
+					</tr>
+					<tr>
+						<td>Annual Visitor Count:</td>
+						<td>${park.annualVisitorCount}</td>
+					</tr>
+					<tr>
+						<td>${park.inspirationalQuote}-</td>
+						<td>${park.inspirationalQuoteSource}</td>
+					</tr>
 
-			<ul class="list is-hoverable">
-				<li class="list-item">State: ${park.state}</li>
 
-				<li class="list-item">Acreage: ${park.acreage}</li>
-				<li class="list-item">Elevation: ${park.elevationInFeet} ft</li>
-				<li class="list-item">Trail Mileage: ${park.milesOfTrail}</li>
-				<li class="list-item">Number of Campsites:
-					${park.numberOfCampsites}</li>
-				<li class="list-item">${park.climate}</li>
-				<li class="list-item">${park.yearFounded}</li>
-				<li class="list-item">${park.entryFee}</li>
-				<li class="list-item">${park.numberOfAnimalSpecies}</li>
-				<li class="list-item">${park.inspirationalQuote}-${park.inspirationalQuoteSource}</li>
-				<li class="list-item">Trail Mileage: ${park.milesOfTrail}</li>
-				<li class="list-item">Number of Camp sites:
-					${park.numberOfCampsites}</li>
-				<li class="list-item">Climate: ${park.climate}</li>
-				<li class="list-item">Park founded in: ${park.yearFounded}</li>
-				<li class="list-item">Number of Animal Species:
-					${park.numberOfAnimalSpecies}</li>
-				<li class="list-item">Annual Visitor Count:
-					${park.annualVisitorCount}</li>
-				<li class="list-item">${park.inspirationalQuote}-${park.inspirationalQuoteSource}</li>
-				<li class="list-item">Entry fee: ${park.entryFee}</li>
-				
-			</ul>
+				</tbody>
+			</table>
+
 		</div>
 
 
