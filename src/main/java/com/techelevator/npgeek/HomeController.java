@@ -1,9 +1,9 @@
 package com.techelevator.npgeek;
 
-
-
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.techelevator.dao.model.Actor;
 import com.techelevator.projects.model.DailyWeatherDAO;
 import com.techelevator.projects.model.Park;
 import com.techelevator.projects.model.ParkDAO;
@@ -29,15 +28,18 @@ public class HomeController {
 	
 	@Autowired
 	private ParkDAO parkDAO;
+	@Autowired
 	private SurveyDAO surveyDAO;
+	@Autowired
 	private DailyWeatherDAO dailyWeatherDAO;
 	
 	
-	@RequestMapping(path = "/", method = RequestMethod.GET)
-	public String goHomePage() {
+	@RequestMapping(path = {"/homePage","/"}, method = RequestMethod.GET)
+	public String goHomePage(ModelMap map) {
+		List<Park> allParks = parkDAO.getDetailedParkInformation();
+		map.addAttribute("allParks", allParks);
 		
-		
-		return "homePage";
+		return "homepage";
 	}
 	
 	
@@ -53,9 +55,9 @@ public class HomeController {
 	@RequestMapping(path="detailsPage", method = RequestMethod.GET)
 	public String goDetailsPage(HttpSession userSesh, ModelMap parksMap) {
 
-		List<Park> listOfParks= parkDAO.getDetailedParkInformation()
+		List<Park> listOfParks= parkDAO.getDetailedParkInformation();
 		
-		modelMap.put("actors", listOfActors);
+	
 		
 		if(userSesh.getAttribute("tempChoice")=="C") { 
 			
@@ -86,7 +88,7 @@ public class HomeController {
 									BindingResult userEntry, RedirectAttributes flash) {
 		
 		if(userEntry.hasErrors()) {
-			flash.addAllAttributes("survey", userSurvey);
+			flash.addAttribute("survey", userSurvey);
 			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "survey" + userEntry);
 			
 			return "survey";
