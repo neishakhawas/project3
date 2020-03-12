@@ -31,7 +31,9 @@ inspiration quote, inspirational quote source, park description, entry fee, numb
 		<p>Entry fee: ${park.entryFee}</p>
 		
 		<c:forEach var="i" items="${weather}">
-		<p> ${i.forecast }</p>
+		<p> Day: ${i.day} - ${i.forecast } Low: ${i.low} High: ${i.high}</p>
+		
+		<img src="<c:url value="/img/weather/${fn:replace(i.forecast,' ', '')}.png"/>"/>
 	</c:forEach>
 
 <a href = "/homepage">
