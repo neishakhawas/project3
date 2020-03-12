@@ -35,11 +35,12 @@ public class HomeController {
 
 	@RequestMapping(path = { "/homePage", "/" }, method = RequestMethod.GET)
 	public String goHomePage(ModelMap map) {
-		List<Park> allParks = parkDAO.getDetailedParkInformation();
+		List<Park> allParks = parkDAO.getAllParkInformation();
 		map.addAttribute("allParks", allParks);
 
 		return "homepage";
 	}
+<<<<<<< HEAD
 
 	@RequestMapping(path = "homePage", method = RequestMethod.POST)
 	public String goHomePage(HttpSession userSesh, @RequestParam String tempChoice) {
@@ -59,6 +60,18 @@ public class HomeController {
 
 		return "detailsPage";
 
+=======
+	
+	
+	@RequestMapping(path="detailsPage", method = RequestMethod.GET)
+	public String goDetailsPage(ModelMap map, String parkCode) {
+
+		Park onePark = parkDAO.getParkInformationByParkCode(parkCode);
+		map.addAttribute("park", onePark);
+	
+		return "detailpage";
+		
+>>>>>>> 575960d3d977e3638ed3d843cecad17abd12f979
 	}
 
 	@RequestMapping(path = "detailsPage", method = RequestMethod.POST)

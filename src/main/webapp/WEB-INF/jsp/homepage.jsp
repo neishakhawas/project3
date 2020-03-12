@@ -2,6 +2,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
+<<<<<<< HEAD
+=======
+<c:forEach var="parks" items="${allParks}">
+
+
+<c:url var="dpu" value="detailsPage">
+<c:param name="parkCode" value="${parks.parkCode}"/>
+</c:url>
+<a href="${dpu}">
+
+	<img src="img/parks/${fn:toLowerCase(parks.parkCode)}.jpg" alt="picture" width="25%" />
+	</a>
+>>>>>>> 575960d3d977e3638ed3d843cecad17abd12f979
 
 <c:set var="pageTitle" value="Home Page" />
 <%@include file="common/header.jsp"%>
