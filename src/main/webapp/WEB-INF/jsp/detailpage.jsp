@@ -75,10 +75,10 @@
 			</div>
 			<div class="message-body is-half">${park.parkDescription}</div>
 		</article>
-		<p class="content is-one-third"></p>
+		
 
 		<div>
-			<table class="table">
+			<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
 				<tbody>
 					<tr>
 						<td>State:</td>
