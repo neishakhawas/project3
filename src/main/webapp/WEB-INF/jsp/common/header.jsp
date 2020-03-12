@@ -11,7 +11,8 @@
 <body>
 	<img src="img/logo.png" alt="picture" width="35%" />
 
-	<nav class="navbar is-success" role="navigation" aria-label="main navigation">
+	<nav class="navbar is-success" role="navigation"
+		aria-label="main navigation">
 		<div class="navbar-brand">
 			<a role="button" class="navbar-burger burger" aria-label="menu"
 				aria-expanded="false" data-target="navbarBasicExample"> <span
@@ -21,9 +22,9 @@
 		</div>
 		<div id="navbarBasicExample" class="navbar-menu">
 			<div class="navbar-start">
-				<a href="/homepage" class="navbar-item"> Home </a> 
-				<a href="/survey" class="navbar-item"> Survey </a>
-					
+				<a href="homepage" class="navbar-item"> Home </a> 
+				<a href="survey" class="navbar-item"> Survey </a>
+
 			</div>
 		</div>
 

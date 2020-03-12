@@ -16,7 +16,7 @@
 	<div class="park-description">
 
 
-
+		<br>
 		<section class="hero is-success">
 			<div class="hero-body">
 				<div class="container">
@@ -45,8 +45,25 @@
 
 
 		<c:forEach var="i" items="${weather}">
-			<img src="<c:url value="/img/weather/${i.forecast}.png"/>" width="10%"/>
-			<p>Day: ${i.day} - ${i.forecast } Low: ${i.low} High: ${i.high}</p>
+			<div>
+				<table class="table">
+					<tbody>
+						<tr>
+						<td><img src="<c:url value="/img/weather/${i.forecast}.png"/>"width="10%" /></td>
+						</tr>
+							<tr>
+							<td>Day: ${i.day} - ${i.forecast}</td>
+							</tr>
+							<tr>
+							<td>Low: ${i.low} </td>
+							</tr>
+							<tr>
+							<td>High: ${i.high} </td>
+							</tr>
+					</tbody>
+				</table>
+			</div>
+
 		</c:forEach>
 
 
@@ -58,10 +75,10 @@
 			</div>
 			<div class="message-body is-half">${park.parkDescription}</div>
 		</article>
-		<p class="content is-one-third"></p>
+		
 
 		<div>
-			<table class="table">
+			<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
 				<tbody>
 					<tr>
 						<td>State:</td>
