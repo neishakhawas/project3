@@ -53,7 +53,7 @@
 					<c:forEach var="i" items="${weather}">
 
 						<tr>
-<<<<<<< HEAD
+
 							<td>${i.day}</td>
 							<td><img
 								src="<c:url value="/img/weather/${i.imgName}.png"/>"
@@ -64,8 +64,7 @@
 				</tbody>
 			</table>
 		</div>
-=======
-						<td><img src="<c:url value="/img/weather/${i.imgName}.png"/>"width="10%" /></td>
+						<%-- <td><img src="<c:url value="/img/weather/${i.imgName}.png"/>"width="10%" /></td>
 						</tr>
 							<tr>
 							<td>Day: ${i.day} - ${i.forecast}</td>
@@ -81,8 +80,7 @@
 			</div>
 
 		</c:forEach>
-
->>>>>>> 661d42922e29964f6d1bced81bef0b7b5054289c
+ --%>
 
 
 		<article class="message is-success">
