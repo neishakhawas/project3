@@ -11,7 +11,7 @@
 		<br>
 		<div class="control">
 			<div class="form">
-				<form:form action="favoriteparks" method="POST" style="form">
+				<form:form action="survey" method="POST" style="form">
 					<label class="label">Enter Your Email Address:</label> <input
 						class="input is-success" style="width: 20em" type="email"
 						name="email" value="Email">
@@ -86,13 +86,12 @@
 					<br> <br> <br>
 					<div class="select is-success">
 						<label class="label">Select Your Favorite Park:</label> <select
-							name="parkName" id="parkName" placeholder="Park Name">
+							name="parkCode" id="parkCode" placeholder="Park Name">
 							<option value="CVNP">Cuyahoga Valley National Park</option>
 							<option value="ENP">Everglades National Park</option>
 							<option value="GCNP">Grand Canyon National Park</option>
 							<option value="GNP">Glacier National Park</option>
-							<option value="GSMNP">Great Smoky Mountains National
-								Park</option>
+							<option value="GSMNP">Great Smoky Mountains National Park</option>
 							<option value="GTNP">Grand Teton National Park</option>
 							<option value="MRNP">Mount Rainier Natioanl Park</option>
 							<option value="RMNP">Rocky Mountain National Park</option>
