@@ -1,9 +1,9 @@
 package com.techelevator.npgeek;
 
-import java.util.ArrayList;
+
+
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -14,14 +14,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.techelevator.projects.model.DailyWeather;
 import com.techelevator.projects.model.DailyWeatherDAO;
 import com.techelevator.projects.model.Park;
 import com.techelevator.projects.model.ParkDAO;
 import com.techelevator.projects.model.Survey;
 import com.techelevator.projects.model.SurveyDAO;
+
 
 @Controller
 public class HomeController {
@@ -44,40 +45,43 @@ public class HomeController {
 	
 	
 	}
-	@RequestMapping(path = "homepage", method = RequestMethod.POST)
-	public String goHomePage(HttpSession userSesh, @RequestParam String tempChoice) {
-		
-		
-		return "homepage";
-	}
 	
+	@RequestMapping(path="favoriteParks",method = RequestMethod.GET)
+	public String goFavoriteParks(ModelMap map) {
+		
+		List<Park> favoriteList= parkDAO.getFavoritesList();
+		
+		map.addAttribute("favorite", favoriteList);
+		
+		
+		return "favoriteParks";
+		
+	}
+    
+    
+    @RequestMapping(path="detailsPage", method = RequestMethod.GET)
+    public String goDetailsPage(ModelMap map, String parkCode) {
 
-	@RequestMapping(path="detailpage", method = RequestMethod.GET)
-	public String goDetailsPage(ModelMap singlePark, @RequestParam String parkCode) {
-
-		List<Park> listOfParks= parkDAO.getDetailedParkInformation();
-		
-		for(int i =0; i<listOfParks.size(); i++) {
-			if (listOfParks.get(i).getParkCode()== parkCode) {
-				
-				singlePark.addAttribute("park", listOfParks.get(i)); break;
-			}
-			
-		}
-		
-			
-		
-		return "detailpage";
-		
-	}
-	
-	@RequestMapping(path="detailpage", method = RequestMethod.POST)
-	public String startSurvey() {
-		
-		return "redirect:survey";
-	}
-	
-	
+        Park onePark = parkDAO.getParkInformationByParkCode(parkCode);
+        map.addAttribute("park", onePark);
+        
+        List<DailyWeather> weather = dailyWeatherDAO.getDailyWeather(parkCode);
+        map.addAttribute("weather", weather);
+    
+        return "detailpage";
+        
+    }
+    
+    
+    
+    @RequestMapping(path="detailsPage", method = RequestMethod.POST)
+    public String startSurvey(HttpSession userSesh) {
+        
+        return "redirect:survey";
+    }
+    
+    
+    
 	@RequestMapping(path="survey", method = RequestMethod.GET)
 	public String goSurvey( ModelMap model) {
 			
@@ -108,22 +112,27 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping(path="favoriteParks",method = RequestMethod.GET)
-	public String goFavoriteParks(ModelMap map) {
-		
-		List<Park> favoriteList= parkDAO.getFavoritesList();
-		
-		map.addAttribute("favorite", favoriteList);
-		
-		
-		return "favoriteParks";
-		
-	}
-	
-	
-	
-	
-	
-	
+    
+//    @RequestMapping(path="survey", method = RequestMethod.POST)
+//    public String submitSurvey(@Valid @ModelAttribute("survey") Survey userSurvey, HttpSession userSesh, 
+//                                    BindingResult userEntry, RedirectAttributes flash) {
+//        
+//        if(userEntry.hasErrors()) {
+//            flash.addAttribute("survey", userSurvey);
+//            flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "survey" + userEntry);
+//            
+//            return "survey";
+//        }
+//        
+//        return "redirect:favoriteParks";
+//        
+//        
+//    }
+    
+
+    
+    
+    
+    
 
 }

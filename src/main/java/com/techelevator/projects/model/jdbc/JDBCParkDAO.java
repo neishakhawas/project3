@@ -28,7 +28,7 @@ private ParkDAO parkDao;
 	}
 
 	@Override
-	public List<Park> getDetailedParkInformation() {
+	public List<Park> getAllParkInformation() {
 		List<Park> allParks = new ArrayList<Park>();
 		String sql_query = "SELECT * FROM park;";
 		
@@ -41,9 +41,7 @@ private ParkDAO parkDao;
 		}
 		return allParks;
 	}
-	
 
-		
 
 	@Override
 	public List<Park> getFavoritesList() {
@@ -68,6 +66,16 @@ private ParkDAO parkDao;
 		
 		return favList;
 	}
+	@Override
+	public Park getParkInformationByParkCode(String parkCode) {
+		String sql_query = "SELECT * from park WHERE parkcode = ?";
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sql_query, parkCode);
+		while(result.next()) {
+		return mapRowToPark(result);
+	}
+		return null;
+	}
+	
 	
 	private Park mapRowToPark(SqlRowSet result) {
 		Park parkInfo = new Park();
@@ -88,5 +96,24 @@ private ParkDAO parkDao;
 		parkInfo.setNumberOfAnimalSpecies(result.getInt("numberofanimalspecies"));
 		return parkInfo;
 	}
+
+	@Override
+	public List<Park> getDetailedParkInformation() {
+		List<Park> allParks = new ArrayList<Park>();
+		String sql_query = "SELECT * FROM park;";
+		
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sql_query);
+		
+		while (result.next()) {
+			Park parkInfo = new Park();
+			parkInfo = mapRowToPark(result);
+			allParks.add(parkInfo);
+		}
+		return allParks;		
+	}
+
+
+
+	
 
 }

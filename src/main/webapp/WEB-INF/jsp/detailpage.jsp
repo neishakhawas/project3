@@ -1,37 +1,166 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<c:set var="pageTitle" value="Home Page"/>
-<%@include file="common/header.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!--  Get park image, name, state, elevation, trail mileage, campsites, annnual visitors, climate
-inspiration quote, inspirational quote source, park description, entry fee, number of aniaml species -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
+
+
+<c:set var="pageTitle" value="Park Details" />
+<%@include file="common/header.jsp"%>
+
+
 
 <div id="park-detail">
 
-<c:url var="imageurl" value= "/images/product-images/${park.parkCode}.jpg"/>
+	<div class="park-description">
 
-	<img src="${imageurl}"/>
-	
-	<div class="product-description">
-		<h3>"${park.parkName}"</h3>
+
+		<br>
+		<section class="hero is-success">
+			<div class="hero-body">
+				<div class="container">
+					<h1 class="title">${park.parkName}</h1>
+
+				</div>
+			</div>
+		</section>
+
+
+		<img
+			src="<c:url value="/img/parks/${fn:toLowerCase(park.parkCode)}.jpg" />" />
+
+
+		<form action="/" method="POST">
+			<select name="tempChoice" id="tempChoice">
+				<option value="F">Farenheit</option>
+				<option value="C">Celsius</option>
+			</select>
+			<button type="submit" name="Submit"></button>
+		</form>
+
+
+
+
+
+
+		<c:forEach var="i" items="${weather}">
+			<div>
+				<table class="table">
+					<tbody>
+						<tr>
+						<td><img src="<c:url value="/img/weather/${i.forecast}.png"/>"width="10%" /></td>
+						</tr>
+							<tr>
+							<td>Day: ${i.day} - ${i.forecast}</td>
+							</tr>
+							<tr>
+							<td>Low: ${i.low} </td>
+							</tr>
+							<tr>
+							<td>High: ${i.high} </td>
+							</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</c:forEach>
+
+
+
+		<article class="message is-success">
+			<div class="message-header is-half">
+				<p>Description</p>
+
+			</div>
+			<div class="message-body is-half">${park.parkDescription}</div>
+		</article>
 		
-		<p>${park.description}</p>
-		<p>State: ${park.state}</p>
-		<p>Elevation: ${park.elevationInFeet} ft</p>
-		<p>Trail Mileage: ${park.milesOfTrail} </p>
-		<p>Number of Campsites: ${park.numberOfCampsites}</p>
-		<p>${park.climate}</p>
-		<p>${park.yearFounded}</p>
-		<p>${park.inspirationalQuote}  - ${park.inspirationalQuoteSource}</p>
+
+		<div>
+			<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+				<tbody>
+					<tr>
+						<td>State:</td>
+						<td>${park.state}</td>
+					</tr>
+					<tr>
+						<td>Acreage:</td>
+						<td>${park.acreage}</td>
+					</tr>
+					<tr>
+						<td>Elevation:</td>
+						<td>${park.elevationInFeet}ft</td>
+					</tr>
+					<tr>
+						<td>Trail Mileage:</td>
+						<td>${park.milesOfTrail}</td>
+					</tr>
+					<tr>
+						<td>Number of Campsites:</td>
+						<td>${park.numberOfCampsites}</td>
+					</tr>
+					<tr>
+						<td>Climate:</td>
+						<td>${park.climate}</td>
+					</tr>
+					<tr>
+						<td>Year Founded:</td>
+						<td>${park.yearFounded}</td>
+					</tr>
+					<tr>
+						<td>Entry Fee:</td>
+						<td>${park.entryFee}</td>
+					</tr>
+					<tr>
+						<td>Number of Animal Species:</td>
+						<td>${park.numberOfAnimalSpecies}</td>
+					</tr>
+					<tr>
+						<td>Trail Mileage:</td>
+						<td>${park.milesOfTrail}</td>
+					</tr>
+					<tr>
+						<td>Number of Camp sites:</td>
+						<td>${park.numberOfCampsites}</td>
+					</tr>
+					<tr>
+						<td>Climate:</td>
+						<td>${park.climate}</td>
+					</tr>
+					<tr>
+						<td>Park founded in:</td>
+						<td>${park.yearFounded}</td>
+					</tr>
+					<tr>
+						<td>Number of Animal Species:</td>
+						<td>${park.numberOfAnimalSpecies}</td>
+					</tr>
+					<tr>
+						<td>Annual Visitor Count:</td>
+						<td>${park.annualVisitorCount}</td>
+					</tr>
+					<tr>
+						<td>${park.inspirationalQuote}</td>
+
+						<td>-${park.inspirationalQuoteSource}</td>
+					</tr>
 
 
-<a href = "/homepage">
-		<button class = "Button"> Return Home</button>
-			</a>
+				</tbody>
+			</table>
+
+		</div>
+
+
+
+
+
+
+
 	</div>
 </div>
 
 
 
-
-<%@include file="common/footer.jsp" %>
+<%@include file="common/footer.jsp"%>

@@ -9,4 +9,8 @@ public interface ParkDAO {
 
 	List<Park> getFavoritesList();
 	
+	public List<Park> getAllParkInformation();
+	
+	public Park getParkInformationByParkCode(String parkCode);
+	
 }
