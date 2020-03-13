@@ -4,7 +4,7 @@
 <%@include file="common/header.jsp"%>
 
 
-<c:forEach var="park" items="${favoriteList}">
+<%-- <c:forEach var="park" items="${favoriteList}">
 
 	<div class="columns">
 		<div class="column is-success">
@@ -23,6 +23,6 @@
 	</div>
 
 
-</c:forEach>
+</c:forEach> --%>
 
 <%@include file="common/footer.jsp"%>

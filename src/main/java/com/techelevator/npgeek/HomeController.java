@@ -72,13 +72,13 @@ public class HomeController {
 	@RequestMapping(path = "/survey", method = RequestMethod.POST)
 	public String submitSurvey(@Valid @ModelAttribute("survey") Survey userSurvey, HttpSession userSesh,
 			BindingResult userEntry, RedirectAttributes flash) {
-
-		if (userEntry.hasErrors()) {
-			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "survey" , userEntry);
-			flash.addAttribute("survey", userSurvey);
-
-			return "redirect:/survey";
-		}
+//
+//		if (userEntry.hasErrors()) {
+//			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "survey" , userEntry);
+//			flash.addAttribute("survey", userSurvey);
+//
+//			return "redirect:/survey";
+//		}
 
 		
 		surveyDAO.createEntry(userSurvey);
