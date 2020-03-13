@@ -1,10 +1,13 @@
 package com.techelevator.projects.model.jdbc;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -14,27 +17,54 @@ import com.techelevator.projects.model.ParkDAO;
 
 @Component
 public class JDBCParkDAO implements ParkDAO {
-	
-	
+
 	
 private JdbcTemplate jdbcTemplate;
+private ParkDAO parkDao;
 	
-	public JDBCParkDAO(DataSource dataSource) {
+	@Autowired
+	public JDBCParkDAO(BasicDataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 
 	@Override
 	public List<Park> getAllParkInformation() {
 		List<Park> allParks = new ArrayList<Park>();
-		String sql_query = "SELECT * from park";
+		String sql_query = "SELECT * FROM park;";
+		
 		SqlRowSet result = jdbcTemplate.queryForRowSet(sql_query);
+		
 		while (result.next()) {
-			Park parkInfo = mapRowToPark(result);
+			Park parkInfo = new Park();
+			parkInfo = mapRowToPark(result);
 			allParks.add(parkInfo);
 		}
 		return allParks;
 	}
-	
+
+
+	@Override
+	public List<Park> getFavoritesList() {
+		
+	String sqlFav ="Select parkname, count(surveyid)" + 
+				" FROM survey_result" + 
+				" Left Join park using (parkcode)" + 
+				" group by parkname" + 
+				" having count(surveyid) > 0" + 
+				" order by count(surveyid) desc, parkname asc; ";
+		
+		SqlRowSet favSet = jdbcTemplate.queryForRowSet(sqlFav);
+		
+		List<Park> favList = new ArrayList<Park>();
+		
+		while(favSet.next()) {
+			Park tempPark = new Park();
+			tempPark = mapRowToPark(favSet);
+			favList.add(tempPark);
+		}
+		
+		return favList;
+	}
 	@Override
 	public Park getParkInformationByParkCode(String parkCode) {
 		String sql_query = "SELECT * from park WHERE parkcode = ?";
@@ -65,6 +95,23 @@ private JdbcTemplate jdbcTemplate;
 		parkInfo.setNumberOfAnimalSpecies(result.getInt("numberofanimalspecies"));
 		return parkInfo;
 	}
+
+	@Override
+	public List<Park> getDetailedParkInformation() {
+		List<Park> allParks = new ArrayList<Park>();
+		String sql_query = "SELECT * FROM park;";
+		
+		SqlRowSet result = jdbcTemplate.queryForRowSet(sql_query);
+		
+		while (result.next()) {
+			Park parkInfo = new Park();
+			parkInfo = mapRowToPark(result);
+			allParks.add(parkInfo);
+		}
+		return allParks;		
+	}
+
+
 
 	
 
