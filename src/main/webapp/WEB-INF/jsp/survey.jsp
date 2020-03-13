@@ -3,10 +3,7 @@
 <c:set var="pageTitle" value="Home Page" />
 <%@include file="common/header.jsp"%>
 
-<meta charset="UTF-8">
-<title>Submit a Review</title>
-</head>
-<body>
+
 	<div class="container">
 		<br>
 		<div class="control">
@@ -91,8 +88,7 @@
 							<option value="ENP">Everglades National Park</option>
 							<option value="GCNP">Grand Canyon National Park</option>
 							<option value="GNP">Glacier National Park</option>
-							<option value="GSMNP">Great Smoky Mountains National
-								Park</option>
+							<option value="GSMNP">Great Smoky Mountains National Park</option>
 							<option value="GTNP">Grand Teton National Park</option>
 							<option value="MRNP">Mount Rainier Natioanl Park</option>
 							<option value="RMNP">Rocky Mountain National Park</option>
@@ -111,8 +107,7 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+
 
 
 
