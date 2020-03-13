@@ -3,15 +3,12 @@
 <c:set var="pageTitle" value="Home Page" />
 <%@include file="common/header.jsp"%>
 
-<meta charset="UTF-8">
-<title>Submit a Review</title>
-</head>
-<body>
+
 	<div class="container">
 		<br>
 		<div class="control">
 			<div class="form">
-				<form:form action="favoriteparks" method="POST" style="form">
+				<form:form action="survey" method="POST" style="form">
 					<label class="label">Enter Your Email Address:</label> <input
 						class="input is-success" style="width: 20em" type="email"
 						name="email" value="Email">
@@ -19,7 +16,7 @@
 					<br><br>
 					<div class="select is-success">
 						<label class="label ">Select Your Activity Level:</label><select
-							name="activityLevel" id="activityLevel">
+							name="activitylevel" id="activitylevel">
 							<option value="1">Inactive</option>
 							<option value="2">Sedentary</option>
 							<option value="3">Active</option>
@@ -86,13 +83,12 @@
 					<br> <br> <br>
 					<div class="select is-success">
 						<label class="label">Select Your Favorite Park:</label> <select
-							name="parkName" id="parkName" placeholder="Park Name">
+							name="parkCode" id="parkCode" placeholder="Park Name">
 							<option value="CVNP">Cuyahoga Valley National Park</option>
 							<option value="ENP">Everglades National Park</option>
 							<option value="GCNP">Grand Canyon National Park</option>
 							<option value="GNP">Glacier National Park</option>
-							<option value="GSMNP">Great Smoky Mountains National
-								Park</option>
+							<option value="GSMNP">Great Smoky Mountains National Park</option>
 							<option value="GTNP">Grand Teton National Park</option>
 							<option value="MRNP">Mount Rainier Natioanl Park</option>
 							<option value="RMNP">Rocky Mountain National Park</option>
@@ -111,8 +107,7 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+
 
 
 
