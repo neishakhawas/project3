@@ -73,14 +73,14 @@ public class HomeController {
 	public String submitSurvey(@Valid @ModelAttribute("survey") Survey userSurvey, HttpSession userSesh,
 			BindingResult userEntry, RedirectAttributes flash) {
 
-//		if (userEntry.hasErrors()) {
-//			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "survey" , userEntry);
-//			flash.addAttribute("survey", userSurvey);
-//
-//			return "redirect:/survey";
-//		}
+		if (userEntry.hasErrors()) {
+			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "survey" , userEntry);
+			flash.addAttribute("survey", userSurvey);
 
-		flash.addFlashAttribute("message", "Thanks for the review.");
+			return "redirect:/survey";
+		}
+
+		
 		surveyDAO.createEntry(userSurvey);
 		return "redirect:/favoriteparks";
 

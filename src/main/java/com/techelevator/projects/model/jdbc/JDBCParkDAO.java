@@ -78,7 +78,7 @@ private ParkDAO parkDao;
 	
 	private Park mapRowToPark(SqlRowSet result) {
 		Park parkInfo = new Park();
-		parkInfo.setParkCode(result.getString("parkcode"));
+		parkInfo.setParkCode(result.getString("parkCode"));
 		parkInfo.setParkName(result.getString("parkname"));
 		parkInfo.setState(result.getString("state"));
 		parkInfo.setAcreage(result.getInt("acreage"));
