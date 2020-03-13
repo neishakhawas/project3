@@ -46,11 +46,11 @@ private ParkDAO parkDao;
 	@Override
 	public List<Park> getFavoritesList() {
 		
-	String sqlFav ="Select parkname, count(surveyid)" + 
-				" FROM survey_result" + 
-				" Left Join park using (parkcode)" + 
-				" group by parkname" + 
-				" having count(surveyid) > 0" + 
+	String sqlFav ="Select parkname, count(surveyid) as counting " + 
+				" FROM survey_result " + 
+				" Left Join park using (parkcode) " + 
+				" group by parkname " + 
+				" having count(surveyid) > 0 " + 
 				" order by count(surveyid) desc, parkname asc; ";
 		
 		SqlRowSet favSet = jdbcTemplate.queryForRowSet(sqlFav);
@@ -59,7 +59,7 @@ private ParkDAO parkDao;
 		
 		while(favSet.next()) {
 			Park tempPark = new Park();
-			tempPark = mapRowToPark(favSet);
+			tempPark = mapRowToParkWithCount(favSet);
 			favList.add(tempPark);
 		}
 		
@@ -93,6 +93,28 @@ private ParkDAO parkDao;
 		parkInfo.setParkDescription(result.getString("parkdescription"));
 		parkInfo.setEntryFee(result.getInt("entryfee"));
 		parkInfo.setNumberOfAnimalSpecies(result.getInt("numberofanimalspecies"));
+		return parkInfo;
+	}
+	
+	
+	private Park mapRowToParkWithCount(SqlRowSet result) {
+		Park parkInfo = new Park();
+		parkInfo.setParkCode(result.getString("parkcode"));
+		parkInfo.setParkName(result.getString("parkname"));
+		parkInfo.setState(result.getString("state"));
+		parkInfo.setAcreage(result.getInt("acreage"));
+		parkInfo.setElevationInfeet(result.getInt("elevationinfeet"));
+		parkInfo.setMilesOfTrail(result.getFloat("milesoftrail"));
+		parkInfo.setNumberOfCampsites(result.getInt("numberofcampsites"));
+		parkInfo.setClimate(result.getString("climate"));
+		parkInfo.setYearFounded(result.getInt("yearfounded"));
+		parkInfo.setAnnualVisitorCount(result.getInt("annualvisitorcount"));
+		parkInfo.setInspirationalQuote(result.getString("inspirationalquote"));
+		parkInfo.setInspirationalQuoteSource(result.getString("inspirationalquotesource"));
+		parkInfo.setParkDescription(result.getString("parkdescription"));
+		parkInfo.setEntryFee(result.getInt("entryfee"));
+		parkInfo.setNumberOfAnimalSpecies(result.getInt("numberofanimalspecies"));
+		parkInfo.setSurveyCount(result.getInt("counting"));
 		return parkInfo;
 	}
 

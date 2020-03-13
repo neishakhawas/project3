@@ -8,7 +8,7 @@
 		<br>
 		<div class="control">
 			<div class="form">
-				<form:form action="favoriteparks" method="POST" style="form" ModelAttribute="survey">
+				<form:form action="survey" method="POST" style="form" ModelAttribute="survey">
 					<label class="label">Enter Your Email Address:</label> <input
 						class="input is-success" style="width: 20em" type="email"
 						name="email" value="Email">
