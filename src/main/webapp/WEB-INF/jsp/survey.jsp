@@ -8,22 +8,27 @@
 </head>
 <body>
 	<div class="container">
-		<div class="notification">
+		<br>
+		<div class="control">
 			<div class="form">
 				<form action="favoriteparks" method="POST" style="">
-					<input class="input is-primary is-normal" type="email" name="email"
-						value="email">
-
+					<label class="label">Enter Your Email Address:</label> <input
+						class="input is-success" style="width: 20em" type="email"
+						name="email" value="Email">
+					<br><br>
 					<div class="select">
-						<select name="activityLevel" id="activityLevel">
+						<label class="label">Select Your Activity Level:</label> <select
+							name="activityLevel" id="activityLevel">
 							<option value="1">Inactive</option>
 							<option value="2">Sedentary</option>
 							<option value="3">Active</option>
 							<option value="4">Extremely Active</option>
 						</select>
 					</div>
-					<div class="select">
-						<select name="state" id="state">
+					<br> <br> <br>
+					<div class="select is-success">
+						<label class="label">Select Your State:</label> <select
+							name="state" id="state">
 							<option value="AL">Alabama</option>
 							<option value="AK">Alaska</option>
 							<option value="AZ">Arizona</option>
@@ -77,8 +82,10 @@
 							<option value="WY">Wyoming</option>
 						</select>
 					</div>
-					<div class="select">
-						<select name="parkName" id="parkName" placeholder="Park Name">
+					<br> <br> <br>
+					<div class="select is-success">
+						<label class="label">Select Your Favorite Park:</label> <select
+							name="parkName" id="parkName" placeholder="Park Name">
 							<option value="CVNP">Cuyahoga Valley National Park</option>
 							<option value="ENP">Everglades National Park</option>
 							<option value="GCNP">Grand Canyon National Park</option>
@@ -92,9 +99,12 @@
 							<option value="YNP2">Yosemite National Park</option>
 						</select>
 					</div>
+
 					<!-- local date<input type = "date" name = "date" value = new > -->
 
-					<input class="formSubmitButton" type="submit" value="Submit Review" />
+
+					<br> <br><br> <input class="button is-medium is-success is-rounded" type="submit"
+						value="Submit Review" />
 
 				</form>
 			</div>
