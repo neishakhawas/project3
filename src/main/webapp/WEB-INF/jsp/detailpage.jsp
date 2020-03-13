@@ -31,7 +31,7 @@
 			src="<c:url value="/img/parks/${fn:toLowerCase(park.parkCode)}.jpg" />" />
 
 
-		<form action="/" method="POST">
+		<form action="#" method="GET">
 			<select name="tempChoice" id="tempChoice">
 				<option value="F">Farenheit</option>
 				<option value="C">Celsius</option>
@@ -49,7 +49,7 @@
 				<table class="table">
 					<tbody>
 						<tr>
-						<td><img src="<c:url value="/img/weather/${i.forecast}.png"/>"width="10%" /></td>
+						<td><img src="<c:url value="/img/weather/${i.imgName}.png"/>"width="10%" /></td>
 						</tr>
 							<tr>
 							<td>Day: ${i.day} - ${i.forecast}</td>
