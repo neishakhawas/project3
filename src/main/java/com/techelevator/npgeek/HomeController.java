@@ -1,7 +1,5 @@
 package com.techelevator.npgeek;
 
-
-
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -34,7 +32,7 @@ public class HomeController {
     private DailyWeatherDAO dailyWeatherDAO;
     
     
-    @RequestMapping(path = {"/homePage", "/"}, method = RequestMethod.GET)
+    @RequestMapping(path = {"/homepage", "/"}, method = RequestMethod.GET)
     public String goHomePage(ModelMap map) {
         List<Park> allParks = parkDAO.getAllParkInformation();
         map.addAttribute("allParks", allParks);
@@ -43,7 +41,7 @@ public class HomeController {
     }
     
     
-    @RequestMapping(path="detailsPage", method = RequestMethod.GET)
+    @RequestMapping(path="/detailsPage", method = RequestMethod.GET)
     public String goDetailsPage(ModelMap map, String parkCode) {
 
 		Park onePark = parkDAO.getParkInformationByParkCode(parkCode);
