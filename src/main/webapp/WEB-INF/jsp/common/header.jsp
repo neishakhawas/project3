@@ -22,7 +22,7 @@
 		</div>
 		<div id="navbarBasicExample" class="navbar-menu">
 			<div class="navbar-start">
-				<a href="homePage" class="navbar-item is-large"> Home </a> 
+				<a href="homepage" class="navbar-item is-large"> Home </a> 
 				<a href="survey" class="navbar-item is-large"> Survey </a>
 
 			</div>
