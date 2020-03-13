@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<c:set var="pageTitle" value="Home Page"/>
+<c:set var="pageTitle" value="favoriteparks"/>
 <%@include file="common/header.jsp" %>
 <c:forEach var = "park" items = "${favoriteParkList}" >
 <div class="tile">
@@ -13,9 +13,6 @@
 
 
 
-<a href = "/homepage">
-		<button class = "Button"> Return Home</button>
-			</a>
 
 
 <%@include file="common/footer.jsp" %>

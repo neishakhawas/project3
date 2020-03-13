@@ -56,31 +56,14 @@
 
 							<td>${i.day}</td>
 							<td><img
-								src="<c:url value="/img/weather/${i.imgName}.png"/>"
-								width="10%" /></td>
+								src="<c:url value="/img/weather/${i.imgName}.png"/>" width="10%" /></td>
 							<td>${i.low}</td>
 							<td>${i.high}</td>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
-						<%-- <td><img src="<c:url value="/img/weather/${i.imgName}.png"/>"width="10%" /></td>
-						</tr>
-							<tr>
-							<td>Day: ${i.day} - ${i.forecast}</td>
-							</tr>
-							<tr>
-							<td>Low: ${i.low} </td>
-							</tr>
-							<tr>
-							<td>High: ${i.high} </td>
-							</tr>
-					</tbody>
-				</table>
-			</div>
 
-		</c:forEach>
- --%>
 
 
 		<article class="message is-success">

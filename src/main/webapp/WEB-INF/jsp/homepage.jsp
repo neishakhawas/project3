@@ -29,9 +29,9 @@
 				</p>
 			</div>
 			<div class="column">
-				<p class="bd-notification is-info">
+				<p class="bd-notification is-info"></p>
 				<p class="content">${parks.parkDescription}</p>
-				</p>
+				
 
 			</div>
 		</div>
