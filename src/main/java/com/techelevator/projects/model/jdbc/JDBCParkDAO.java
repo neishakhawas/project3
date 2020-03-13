@@ -99,21 +99,7 @@ private ParkDAO parkDao;
 	
 	private Park mapRowToParkWithCount(SqlRowSet result) {
 		Park parkInfo = new Park();
-		parkInfo.setParkCode(result.getString("parkcode"));
 		parkInfo.setParkName(result.getString("parkname"));
-		parkInfo.setState(result.getString("state"));
-		parkInfo.setAcreage(result.getInt("acreage"));
-		parkInfo.setElevationInfeet(result.getInt("elevationinfeet"));
-		parkInfo.setMilesOfTrail(result.getFloat("milesoftrail"));
-		parkInfo.setNumberOfCampsites(result.getInt("numberofcampsites"));
-		parkInfo.setClimate(result.getString("climate"));
-		parkInfo.setYearFounded(result.getInt("yearfounded"));
-		parkInfo.setAnnualVisitorCount(result.getInt("annualvisitorcount"));
-		parkInfo.setInspirationalQuote(result.getString("inspirationalquote"));
-		parkInfo.setInspirationalQuoteSource(result.getString("inspirationalquotesource"));
-		parkInfo.setParkDescription(result.getString("parkdescription"));
-		parkInfo.setEntryFee(result.getInt("entryfee"));
-		parkInfo.setNumberOfAnimalSpecies(result.getInt("numberofanimalspecies"));
 		parkInfo.setSurveyCount(result.getInt("counting"));
 		return parkInfo;
 	}
