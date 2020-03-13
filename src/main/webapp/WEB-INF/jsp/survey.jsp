@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var="pageTitle" value="Home Page" />
 <%@include file="common/header.jsp"%>
 
@@ -11,13 +11,14 @@
 		<br>
 		<div class="control">
 			<div class="form">
-				<form action="favoriteparks" method="POST" style="">
+				<form:form action="favoriteParks" method="POST" style="">
 					<label class="label">Enter Your Email Address:</label> <input
 						class="input is-success" style="width: 20em" type="email"
 						name="email" value="Email">
+						<form:errors path="email" cssClass="error" />
 					<br><br>
-					<div class="select">
-						<label class="label">Select Your Activity Level:</label> <select
+					<div class="select is-success">
+						<label class="label ">Select Your Activity Level:</label><select
 							name="activityLevel" id="activityLevel">
 							<option value="1">Inactive</option>
 							<option value="2">Sedentary</option>
@@ -106,7 +107,7 @@
 					<br> <br><br> <input class="button is-medium is-success is-rounded" type="submit"
 						value="Submit Review" />
 
-				</form>
+				</form:form>
 			</div>
 		</div>
 	</div>
