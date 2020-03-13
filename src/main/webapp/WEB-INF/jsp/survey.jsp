@@ -3,10 +3,7 @@
 <c:set var="pageTitle" value="Home Page" />
 <%@include file="common/header.jsp"%>
 
-<meta charset="UTF-8">
-<title>Submit a Review</title>
-</head>
-<body>
+
 	<div class="container">
 		<br>
 		<div class="control">
@@ -19,7 +16,7 @@
 					<br><br>
 					<div class="select is-success">
 						<label class="label ">Select Your Activity Level:</label><select
-							name="activityLevel" id="activityLevel">
+							name="activitylevel" id="activitylevel">
 							<option value="1">Inactive</option>
 							<option value="2">Sedentary</option>
 							<option value="3">Active</option>
@@ -110,8 +107,7 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+
 
 
 

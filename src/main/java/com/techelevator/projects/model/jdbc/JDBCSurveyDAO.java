@@ -10,26 +10,26 @@ import com.techelevator.projects.model.Survey;
 import com.techelevator.projects.model.SurveyDAO;
 
 @Component
-public class JDBCSurveyDAO implements SurveyDAO{
+public class JDBCSurveyDAO implements SurveyDAO {
 
-private JdbcTemplate jdbcTemplate;
-	
+	private JdbcTemplate jdbcTemplate;
+
 	public JDBCSurveyDAO(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-	
+
 	@Override
 	public void createEntry(Survey survey) {
-		
-		SqlRowSet sqlNewid = jdbcTemplate.queryForRowSet("SELECT nextval('surveyid'::regclass)");
-		
-		Long newSurveyId=sqlNewid.getLong(1);
-		
-		String sqlCreate = "INSERT INTO survey_result (surveyid, parkcode, emailaddress, state, activitylevel)"
-				+ "VALUES (?,?,?,?,?);"; 
-		
-		jdbcTemplate.update(sqlCreate, newSurveyId,  survey.getEmail(), 
-				survey.getState(), survey.getActivityLevel());
+
+		// SqlRowSet sqlNewid = jdbcTemplate.queryForRowSet("SELECT
+		// nextval('surveyid'::regclass)");
+
+		// Long newSurveyId=sqlNewid.getLong(1);
+
+		String sqlCreate = "INSERT INTO survey_result ( parkcode, emailaddress, state, activitylevel)"
+				+ "VALUES (?,?,?,?);";
+
+		jdbcTemplate.update(sqlCreate, survey.getParkCode(), survey.getEmail(), survey.getState(), survey.getActivityLevel());
 	}
-	
+
 }
