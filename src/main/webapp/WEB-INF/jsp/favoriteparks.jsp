@@ -2,11 +2,14 @@
 
 <c:set var="pageTitle" value="favoriteparks"/>
 <%@include file="common/header.jsp" %>
-<c:forEach var = "park" items = "${favoriteParkList}" >
+
+
+<c:forEach var = "park" items = "${favorite}">
+
 <div class="tile">
-				<p> ${parks.parkName}</p>
+				<p> ${park.parkName}</p>
 				<img src = "img/parks/${park.parkCode}.jpg"/>
-				<p>${park.description}</p>	
+				<p>${park.surveyCount}</p>	
 
 </div>
 </c:forEach>

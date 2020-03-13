@@ -7,7 +7,7 @@
 
 <c:forEach var="parks" items="${allParks}">
 
-	<c:url var="dpu" value="detailsPage">
+	<c:url var="dpu" value="detailspage">
 		<c:param name="parkCode" value="${parks.parkCode}" />
 	</c:url>
 

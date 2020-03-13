@@ -21,80 +21,113 @@ import com.techelevator.projects.model.ParkDAO;
 import com.techelevator.projects.model.Survey;
 import com.techelevator.projects.model.SurveyDAO;
 
+
 @Controller
 public class HomeController {
-    
-    @Autowired
-    private ParkDAO parkDAO;
-    @Autowired
-    private SurveyDAO surveyDAO;
-    @Autowired
-    private DailyWeatherDAO dailyWeatherDAO;
-    
-    
-    @RequestMapping(path = {"/homepage", "/"}, method = RequestMethod.GET)
-    public String goHomePage(ModelMap map) {
-        List<Park> allParks = parkDAO.getAllParkInformation();
-        map.addAttribute("allParks", allParks);
-        
-        return "homepage";
-    }
+	
+	@Autowired
+	private ParkDAO parkDAO;
+	@Autowired
+	private SurveyDAO surveyDAO;
+	@Autowired
+	private DailyWeatherDAO dailyWeatherDAO;
+	
+	
+	@RequestMapping(path = {"/","homepage"}, method = RequestMethod.GET)
+	public String goHomePage(ModelMap map) {
+		List<Park> allParks = parkDAO.getDetailedParkInformation();
+		
+		map.addAttribute("allParks", allParks);
+		
+		return "homepage";
+	
+	
+	}
+	
+	@RequestMapping(path="favoriteParks",method = RequestMethod.GET)
+	public String goFavoriteParks(ModelMap map) {
+		
+		List<Park> favoriteList= parkDAO.getFavoritesList();
+		
+		map.addAttribute("favorite", favoriteList);
+		
+		
+		return "favoriteParks";
+		
+	}
     
     
     @RequestMapping(path="/detailsPage", method = RequestMethod.GET)
     public String goDetailsPage(ModelMap map, String parkCode) {
 
-		Park onePark = parkDAO.getParkInformationByParkCode(parkCode);
-		map.addAttribute("park", onePark);
-		
-		List<DailyWeather> weather = dailyWeatherDAO.getDailyWeather(parkCode);
-		map.addAttribute("weather", weather);
-	
-		return "detailpage";
-		
-	}
-	
-	@RequestMapping(path="detailsPage", method = RequestMethod.POST)
-	public String startSurvey(HttpSession userSesh) {
-		
-		return "redirect:survey";
-	}
-	
-	
+        Park onePark = parkDAO.getParkInformationByParkCode(parkCode);
+        map.addAttribute("park", onePark);
+        
+        List<DailyWeather> weather = dailyWeatherDAO.getDailyWeather(parkCode);
+        map.addAttribute("weather", weather);
+    
+        return "detailpage";
+        
+    }
+    
+    
+    
+    @RequestMapping(path="detailsPage", method = RequestMethod.POST)
+    public String startSurvey(HttpSession userSesh) {
+        
+        return "redirect:survey";
+    }
+    
+    
+    
 	@RequestMapping(path="survey", method = RequestMethod.GET)
-	public String goSurvey(HttpSession userSesh, ModelMap model) {
+	public String goSurvey( ModelMap model) {
+			
 		
 		model.addAttribute("survey", new Survey());
 		
 		return "survey";
 	
 }
+	
+	@RequestMapping(path="survey", method = RequestMethod.POST)
+	public String submitSurvey(@Valid @ModelAttribute("survey") Survey userSurvey, HttpSession userSesh, 
+									BindingResult userEntry, RedirectAttributes flash) {
+		
+		
+		if(userEntry.hasErrors()) {
+			flash.addAttribute("survey", userSurvey);
+			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "survey" + userEntry);
+			
+			return "survey";
+		}
+		
+		surveyDAO.createEntry(userSurvey);
+		
+		return "redirect:favoriteParks";
+		
+		
+	}
+	
+	
     
-    @RequestMapping(path="survey", method = RequestMethod.POST)
-    public String submitSurvey(@Valid @ModelAttribute("survey") Survey userSurvey, HttpSession userSesh, 
-                                    BindingResult userEntry, RedirectAttributes flash) {
-        
-        if(userEntry.hasErrors()) {
-            flash.addAttribute("survey", userSurvey);
-            flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "survey" + userEntry);
-            
-            return "survey";
-        }
-        
-        return "redirect:favoriteParks";
-        
-        
-    }
+//    @RequestMapping(path="survey", method = RequestMethod.POST)
+//    public String submitSurvey(@Valid @ModelAttribute("survey") Survey userSurvey, HttpSession userSesh, 
+//                                    BindingResult userEntry, RedirectAttributes flash) {
+//        
+//        if(userEntry.hasErrors()) {
+//            flash.addAttribute("survey", userSurvey);
+//            flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "survey" + userEntry);
+//            
+//            return "survey";
+//        }
+//        
+//        return "redirect:favoriteParks";
+//        
+//        
+//    }
     
-    
-    @RequestMapping(path="favoriteParks",method = RequestMethod.GET)
-    public String goFavoriteParks() {
-        
-        return "favoriteParks";
-        
-    }
-    
-    
+
     
     
     
