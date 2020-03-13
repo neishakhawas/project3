@@ -39,15 +39,19 @@
 			<button type="submit" name="Submit"></button>
 		</form>
 
+		<div>
+			<table class="table is-bordered is-striped is-narrow is-hoverable">
+				<thead>
+					<tr>
+						<th>Day</th>
+						<th>Forecast</th>
+						<th>Low</th>
+						<th>High</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="i" items="${weather}">
 
-
-
-
-
-		<c:forEach var="i" items="${weather}">
-			<div>
-				<table class="table">
-					<tbody>
 						<tr>
 						<td><img src="<c:url value="/img/weather/${i.imgName}.png"/>"width="10%" /></td>
 						</tr>
@@ -75,10 +79,11 @@
 			</div>
 			<div class="message-body is-half">${park.parkDescription}</div>
 		</article>
-		
+
 
 		<div>
-			<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+			<table
+				class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
 				<tbody>
 					<tr>
 						<td>State:</td>
