@@ -41,7 +41,8 @@ public class JDBCDailyWeatherDAO implements DailyWeatherDAO {
 		weather.setDay(results.getInt("fivedayforecastvalue"));
 		weather.setLow(results.getInt("low"));
 		weather.setHigh(results.getInt("high"));
-		weather.setForecast(results.getString("forecast").replace(" ",  ""));
+		weather.setForecast(results.getString("forecast"));
+		weather.setImgName(results.getString("forecast").replace(" ", ""));
 	
 		return weather;
 	}
