@@ -55,8 +55,8 @@
 						<tr>
 							<td>${i.day}</td>
 							<td><img
-								src="<c:url value="/img/weather/${i.forecast}.png"/>"
-								width="10%" /> ${i.forecast}</td>
+								src="<c:url value="/img/weather/${i.imgName}.png"/>"
+								width="10%" /></td>
 							<td>${i.low}</td>
 							<td>${i.high}</td>
 					</c:forEach>
