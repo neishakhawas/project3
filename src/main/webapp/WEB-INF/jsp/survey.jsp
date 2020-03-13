@@ -11,7 +11,7 @@
 		<br>
 		<div class="control">
 			<div class="form">
-				<form:form action="favoriteparks" method="POST" style="form">
+				<form:form action="favoriteparks" method="POST" style="form" ModelAttribute="survey">
 					<label class="label">Enter Your Email Address:</label> <input
 						class="input is-success" style="width: 20em" type="email"
 						name="email" value="Email">
@@ -19,7 +19,7 @@
 					<br><br>
 					<div class="select is-success">
 						<label class="label ">Select Your Activity Level:</label><select
-							name="activityLevel" id="activityLevel">
+							name="activitylevel" id="activitylevel">
 							<option value="1">Inactive</option>
 							<option value="2">Sedentary</option>
 							<option value="3">Active</option>
@@ -86,7 +86,7 @@
 					<br> <br> <br>
 					<div class="select is-success">
 						<label class="label">Select Your Favorite Park:</label> <select
-							name="parkName" id="parkName" placeholder="Park Name">
+							name="parkCode" id="parkCode" placeholder="Park Name">
 							<option value="CVNP">Cuyahoga Valley National Park</option>
 							<option value="ENP">Everglades National Park</option>
 							<option value="GCNP">Grand Canyon National Park</option>

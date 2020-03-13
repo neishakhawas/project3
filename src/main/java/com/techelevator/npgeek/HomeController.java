@@ -82,7 +82,7 @@ public class HomeController {
 	
 	@RequestMapping(path="survey", method = RequestMethod.POST)
 	public String submitSurvey(@Valid @ModelAttribute("survey") Survey userSurvey, HttpSession userSesh, 
-									BindingResult userEntry, RedirectAttributes flash) {
+									BindingResult userEntry, RedirectAttributes flash, ModelMap map) {
 		
 		
 		if(userEntry.hasErrors()) {
@@ -92,9 +92,13 @@ public class HomeController {
 			return "survey";
 		}
 		
+		
+		
 		surveyDAO.createEntry(userSurvey);
 		
-		return "redirect:favoriteParks";
+		
+		
+		return "redirect:favoriteparks";
 		
 		
 	}
@@ -102,7 +106,7 @@ public class HomeController {
 	
 
 
-	@RequestMapping(path="favoriteParks",method = RequestMethod.GET)
+	@RequestMapping(path="favoriteparks",method = RequestMethod.GET)
 	public String goFavoriteParks(ModelMap map) {
 		
 		List<Park> favoriteList= parkDAO.getFavoritesList();
@@ -110,7 +114,7 @@ public class HomeController {
 		map.addAttribute("favorite", favoriteList);
 		
 		
-		return "favoriteParks";
+		return "favoriteparks";
 		
 	}
     

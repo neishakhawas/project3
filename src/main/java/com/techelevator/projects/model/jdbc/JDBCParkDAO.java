@@ -52,7 +52,7 @@ private ParkDAO parkDao;
 				" Left Join park using (parkcode)" + 
 				" group by parkname" + 
 				" having count(surveyid) > 0" + 
-				" order by count(surveyid) dsc, parkname asc; ";
+				" order by count(surveyid) desc, parkname asc; ";
 		
 		SqlRowSet favSet = jdbcTemplate.queryForRowSet(sqlFav);
 		
