@@ -11,7 +11,7 @@
 		<br>
 		<div class="control">
 			<div class="form">
-				<form:form action="favoriteParks" method="POST" style="">
+				<form:form action="favoriteparks" method="POST" style="form">
 					<label class="label">Enter Your Email Address:</label> <input
 						class="input is-success" style="width: 20em" type="email"
 						name="email" value="Email">
