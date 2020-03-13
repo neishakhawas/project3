@@ -90,9 +90,7 @@ public class HomeController {
 	public String goFavoriteParks(ModelMap map) {
 
 		List<Park> favoriteList = parkDAO.getFavoritesList();
-
 		map.addAttribute("favorite", favoriteList);
-
 		return "favoriteparks";
 
 	}
