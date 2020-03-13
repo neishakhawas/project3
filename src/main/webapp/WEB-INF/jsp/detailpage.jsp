@@ -31,7 +31,7 @@
 			src="<c:url value="/img/parks/${fn:toLowerCase(park.parkCode)}.jpg" />" />
 
 
-		<form action="/" method="POST">
+		<form action="#" method="GET">
 			<select name="tempChoice" id="tempChoice">
 				<option value="F">Farenheit</option>
 				<option value="C">Celsius</option>
@@ -39,33 +39,30 @@
 			<button type="submit" name="Submit"></button>
 		</form>
 
+		<div>
+			<table class="table is-bordered is-striped is-narrow is-hoverable">
+				<thead>
+					<tr>
+						<th>Day</th>
+						<th>Forecast</th>
+						<th>Low</th>
+						<th>High</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="i" items="${weather}">
 
-
-
-
-
-		<c:forEach var="i" items="${weather}">
-			<div>
-				<table class="table">
-					<tbody>
 						<tr>
-						<td><img src="<c:url value="/img/weather/${i.forecast}.png"/>"width="10%" /></td>
-						</tr>
-							<tr>
-							<td>Day: ${i.day} - ${i.forecast}</td>
-							</tr>
-							<tr>
-							<td>Low: ${i.low} </td>
-							</tr>
-							<tr>
-							<td>High: ${i.high} </td>
-							</tr>
-					</tbody>
-				</table>
-			</div>
-
-		</c:forEach>
-
+							<td>${i.day}</td>
+							<td><img
+								src="<c:url value="/img/weather/${i.imgName}.png"/>"
+								width="10%" /></td>
+							<td>${i.low}</td>
+							<td>${i.high}</td>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 
 
 		<article class="message is-success">
@@ -75,10 +72,11 @@
 			</div>
 			<div class="message-body is-half">${park.parkDescription}</div>
 		</article>
-		
+
 
 		<div>
-			<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+			<table
+				class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
 				<tbody>
 					<tr>
 						<td>State:</td>

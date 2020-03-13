@@ -7,6 +7,16 @@ public class DailyWeather {
 	private int low;
 	private int high;
 	private String forecast;
+	private String imgName;
+	
+	
+	
+	public String getImgName() {
+		return imgName;
+	}
+	public void setImgName(String imgName) {
+		this.imgName = imgName;
+	}
 	public String getParkCode() {
 		return parkCode;
 	}
