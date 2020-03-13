@@ -78,19 +78,19 @@ public class HomeController {
             flash.addAttribute("survey", userSurvey);
             flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "survey" + userEntry);
             
-            return "survey";
+            return "redirect:/survey";
         }
         
-        return "redirect:favoriteParks";
+        return "redirect:favoriteparks";
         
         
     }
     
     
-    @RequestMapping(path="favoriteParks",method = RequestMethod.GET)
+    @RequestMapping(path="favoriteparks",method = RequestMethod.GET)
     public String goFavoriteParks() {
         
-        return "favoriteParks";
+        return "favoriteparks";
         
     }
     
