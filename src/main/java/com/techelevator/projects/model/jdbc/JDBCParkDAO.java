@@ -46,11 +46,11 @@ private ParkDAO parkDao;
 	@Override
 	public List<Park> getFavoritesList() {
 		
-	String sqlFav ="Select parkname, count(surveyid)" + 
-				" FROM survey_result" + 
-				" Left Join park using (parkcode)" + 
-				" group by parkname" + 
-				" having count(surveyid) > 0" + 
+	String sqlFav ="Select parkname, parkcode, count(surveyid) as counting " + 
+				" FROM survey_result " + 
+				" Left Join park using (parkcode) " + 
+				" group by parkname, parkcode " + 
+				" having count(surveyid) > 0 " + 
 				" order by count(surveyid) desc, parkname asc; ";
 		
 		SqlRowSet favSet = jdbcTemplate.queryForRowSet(sqlFav);
@@ -59,7 +59,7 @@ private ParkDAO parkDao;
 		
 		while(favSet.next()) {
 			Park tempPark = new Park();
-			tempPark = mapRowToPark(favSet);
+			tempPark = mapRowToParkWithCount(favSet);
 			favList.add(tempPark);
 		}
 		
@@ -78,7 +78,7 @@ private ParkDAO parkDao;
 	
 	private Park mapRowToPark(SqlRowSet result) {
 		Park parkInfo = new Park();
-		parkInfo.setParkCode(result.getString("parkcode"));
+		parkInfo.setParkCode(result.getString("parkCode"));
 		parkInfo.setParkName(result.getString("parkname"));
 		parkInfo.setState(result.getString("state"));
 		parkInfo.setAcreage(result.getInt("acreage"));
@@ -93,6 +93,15 @@ private ParkDAO parkDao;
 		parkInfo.setParkDescription(result.getString("parkdescription"));
 		parkInfo.setEntryFee(result.getInt("entryfee"));
 		parkInfo.setNumberOfAnimalSpecies(result.getInt("numberofanimalspecies"));
+		return parkInfo;
+	}
+	
+	
+	private Park mapRowToParkWithCount(SqlRowSet result) {
+		Park parkInfo = new Park();
+		parkInfo.setParkName(result.getString("parkname"));
+		parkInfo.setSurveyCount(result.getInt("counting"));
+		parkInfo.setParkCode(result.getString("parkcode"));
 		return parkInfo;
 	}
 

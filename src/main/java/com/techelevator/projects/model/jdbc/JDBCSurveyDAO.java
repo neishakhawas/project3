@@ -21,15 +21,11 @@ public class JDBCSurveyDAO implements SurveyDAO {
 	@Override
 	public void createEntry(Survey survey) {
 
-		// SqlRowSet sqlNewid = jdbcTemplate.queryForRowSet("SELECT
-		// nextval('surveyid'::regclass)");
 
-		// Long newSurveyId=sqlNewid.getLong(1);
+		String sqlCreate = "INSERT INTO survey_result ( parkcode, emailaddress, state, activitylevel) "
+				+ "VALUES ( ?,?,?,?);";
 
-		String sqlCreate = "INSERT INTO survey_result ( parkcode, emailaddress, state, activitylevel)"
-				+ "VALUES (?,?,?,?);";
-
-		jdbcTemplate.update(sqlCreate, survey.getParkCode(), survey.getEmail(), survey.getState(), survey.getActivityLevel());
+		jdbcTemplate.update(sqlCreate, survey.getParkCode(), survey.getEmail(), survey.getState(), survey.getActivitylevel());
 	}
 
 }

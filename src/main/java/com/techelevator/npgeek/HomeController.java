@@ -34,6 +34,7 @@ public class HomeController {
 
 	@RequestMapping(path = { "/", "/homepage" }, method = RequestMethod.GET)
 	public String goHomePage(ModelMap map) {
+		
 		List<Park> allParks = parkDAO.getDetailedParkInformation();
 
 		map.addAttribute("allParks", allParks);
@@ -70,13 +71,15 @@ public class HomeController {
 		model.addAttribute("survey", new Survey());
 
 		return "survey";
-
-	}
+	
+}
+	
 
 	@RequestMapping(path = "/survey", method = RequestMethod.POST)
 	public String submitSurvey(@Valid @ModelAttribute("survey") Survey userSurvey, HttpSession userSesh,
 			BindingResult userEntry, RedirectAttributes flash) {
 
+//
 //		if (userEntry.hasErrors()) {
 //			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "survey" , userEntry);
 //			flash.addAttribute("survey", userSurvey);
@@ -84,7 +87,6 @@ public class HomeController {
 //			return "redirect:/survey";
 //		}
 
-		flash.addFlashAttribute("message", "Thanks for the review.");
 		surveyDAO.createEntry(userSurvey);
 		return "redirect:/favoriteparks";
 
@@ -94,9 +96,7 @@ public class HomeController {
 	public String goFavoriteParks(ModelMap map) {
 
 		List<Park> favoriteList = parkDAO.getFavoritesList();
-
 		map.addAttribute("favorite", favoriteList);
-
 		return "favoriteparks";
 
 	}

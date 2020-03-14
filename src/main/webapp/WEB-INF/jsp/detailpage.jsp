@@ -52,24 +52,38 @@
 							<td>${i.day}</td>
 							<td><img
 								src="<c:url value="/img/weather/${i.imgName}.png"/>" width="10%" /></td>
-								
-								
+
 								<c:choose>
+								
 								<c:when test="${i.forecast == 'snow' }">
 								<td>Snow and ice expected. Take precaution!!!</td>
 								</c:when>
+								
+								<c:when test="${i.forecast == 'partly cloudy' }">
+								<td> Partly cloudy. Rain might be expected</td>
+								</c:when>
+								
+								<c:when test="${i.forecast == 'cloudy' }">
+								<td>Cloudy. Rain in the forecast</td>
+								</c:when>
+								
+								<c:when test="${i.forecast == 'rain' }">
+								<td>Rain expected. Get your umbrellas</td>
+								</c:when>
+								
+								
 								<c:otherwise>
-								<td>Sunny Day</td>
+								<td>Sunny Day.Enjoy the warm weather.</td>
 								</c:otherwise>
+								
 								</c:choose>
 							
 							
 							
 							
-							
-							</c:forEach>
-						<c:choose>
-							
+
+						
+							<c:choose>
 							<c:when test="${param.tempChoice == 'F'}">
             				<td> ${i.low} F</td>
 							<td> ${i.high} F</td>
