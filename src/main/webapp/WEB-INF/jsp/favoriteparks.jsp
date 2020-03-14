@@ -7,7 +7,7 @@
 <c:forEach var="park" items="${favoriteList}">
 	
 		<p>${park.parkname}</p>
-		<img src="img/parks/${park.parkcode}.jpg" />
+		
 		
 
 			
