@@ -59,9 +59,7 @@ public class HomeController {
 
 	@RequestMapping(path = "/detailsPage", method = RequestMethod.POST)
 	public String startSurvey(HttpSession session, @RequestParam String tempChoice, @RequestParam String parkCode) {
-		
 		session.getAttribute(tempChoice);
-
 		return "redirect:survey";
 	}
 
@@ -69,7 +67,6 @@ public class HomeController {
 	public String goSurvey(ModelMap model) {
 
 		model.addAttribute("survey", new Survey());
-
 		return "survey";
 	
 }
@@ -94,7 +91,6 @@ public class HomeController {
 
 	@RequestMapping(path = "/favoriteparks", method = RequestMethod.GET)
 	public String goFavoriteParks(ModelMap map) {
-
 		List<Park> favoriteList = parkDAO.getFavoritesList();
 		map.addAttribute("favorite", favoriteList);
 		return "favoriteparks";
