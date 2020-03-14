@@ -8,7 +8,25 @@ public class DailyWeather {
 	private int high;
 	private String forecast;
 	private String imgName;
+	private double highInC;
+	private double lowInC;
 	
+	
+	
+	public double getLowInC() {
+		return lowInC;
+	}
+	public void setLowInC(int low) {
+		this.lowInC = Math.round((low - 32) * 0.5556);
+	}
+	
+	
+	public double getHighInC() {
+		return highInC;
+	}
+	public void setHighInC(int high) {
+		this.highInC = Math.round((high - 32) * 0.5556);
+	}
 	
 	
 	public String getImgName() {
@@ -47,8 +65,5 @@ public class DailyWeather {
 	public void setForecast(String forecast) {
 		this.forecast = forecast;
 	}
-	public int tempConvert(int temp) {
-		int tempInCelsius = (int) ((temp-32)*(0.5556));
-		return tempInCelsius;
-	}
+	
 }

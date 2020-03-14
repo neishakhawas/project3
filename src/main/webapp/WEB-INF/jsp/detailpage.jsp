@@ -1,42 +1,37 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
-
 
 <c:set var="pageTitle" value="Park Details" />
 <%@include file="common/header.jsp"%>
 
-
-
 <div id="park-detail">
-
 	<div class="park-description">
-
-
 		<br>
 		<section class="hero is-success">
 			<div class="hero-body">
 				<div class="container">
 					<h1 class="title">${park.parkName}</h1>
-
 				</div>
 			</div>
 		</section>
+		<img src="<c:url value="/img/parks/${fn:toLowerCase(park.parkCode)}.jpg" />" />
 
-
-		<img
-			src="<c:url value="/img/parks/${fn:toLowerCase(park.parkCode)}.jpg" />" />
-
-
-		<form action="#" method="GET">
-			<select name="tempChoice" id="tempChoice">
-				<option value="F">Farenheit</option>
+				<c:url var="dpuw" value="detailsPage">
+						<c:param name="parkCode" value="${park.parkCode}" />
+					</c:url>
+		<form action="${dpuw}" method="GET">
+			<select name="tempChoice">
+				<option value="F">Fahrenheit</option>
 				<option value="C">Celsius</option>
+				
 			</select>
+			<select name="parkCode" id="" style="display:none">
+				<option value ="${park.parkCode}" ></option>
+			</select>
+			
 			<button type="submit" name="Submit"></button>
+			
 		</form>
 
 		<div>
@@ -45,6 +40,7 @@
 					<tr>
 						<th>Day</th>
 						<th>Forecast</th>
+						<th>Advisory</th>
 						<th>Low</th>
 						<th>High</th>
 					</tr>
@@ -56,15 +52,50 @@
 							<td>${i.day}</td>
 							<td><img
 								src="<c:url value="/img/weather/${i.imgName}.png"/>" width="10%" /></td>
-							<td>${i.low}</td>
-							<td>${i.high}</td>
+								
+								<c:forEach var="j" items="${advisory}">
+								<c:choose>
+								<c:when test="${i.forecast == 'snow' }">
+								<td>${j.advisory[0]}</td>
+								</c:when>
+								</c:choose>
+							<td>${i.advisory}</td>
+							
+							
+							
+							
+							
+							</c:forEach>
+						<c:choose>
+							
+							<c:when test="${param.tempChoice == 'F'}">
+            				<td> ${i.low} F</td>
+							<td> ${i.high} F</td>
+        					 </c:when>
+
+							<c:when test="${param.tempChoice == 'C'}">
+							<td> ${i.lowInC} C</td>
+							<td> ${i.highInC} C</td>
+							
+        					 </c:when>
+
+							<c:otherwise>
+							<td>F: ${i.low}</td>
+							<td>F: ${i.high}</td>
+            
+         					</c:otherwise>
+							</c:choose>
+							
+							
+							
+							
+							</tr>
+							
+							
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
-
-
-
 		<article class="message is-success">
 			<div class="message-header is-half">
 				<p>Description</p>
@@ -72,8 +103,6 @@
 			</div>
 			<div class="message-body is-half">${park.parkDescription}</div>
 		</article>
-
-
 		<div>
 			<table
 				class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
@@ -143,22 +172,10 @@
 
 						<td>-${park.inspirationalQuoteSource}</td>
 					</tr>
-
-
 				</tbody>
 			</table>
-
 		</div>
-
-
-
-
-
-
-
 	</div>
 </div>
-
-
 
 <%@include file="common/footer.jsp"%>

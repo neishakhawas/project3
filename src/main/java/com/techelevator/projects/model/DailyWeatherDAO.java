@@ -6,5 +6,7 @@ public interface DailyWeatherDAO {
 	
 	public List<DailyWeather> getDailyWeather(String parkcode);
 	
+	public List<String> getAdvisory();
+	
 
 }

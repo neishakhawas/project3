@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.techelevator.projects.model.DailyWeather;
@@ -50,13 +51,18 @@ public class HomeController {
 
 		List<DailyWeather> weather = dailyWeatherDAO.getDailyWeather(parkCode);
 		map.addAttribute("weather", weather);
+		
+		List<String> advisory = dailyWeatherDAO.getAdvisory();
+		map.addAttribute("advisory", advisory);
 
 		return "detailpage";
 
 	}
 
 	@RequestMapping(path = "/detailsPage", method = RequestMethod.POST)
-	public String startSurvey(HttpSession userSesh) {
+	public String startSurvey(HttpSession session, @RequestParam String tempChoice, @RequestParam String parkCode) {
+		
+		session.getAttribute(tempChoice);
 
 		return "redirect:survey";
 	}
