@@ -53,13 +53,15 @@
 							<td><img
 								src="<c:url value="/img/weather/${i.imgName}.png"/>" width="10%" /></td>
 								
-								<c:forEach var="j" items="${advisory}">
+								
 								<c:choose>
 								<c:when test="${i.forecast == 'snow' }">
-								<td>${j.advisory[0]}</td>
+								<td>Snow and ice expected. Take precaution!!!</td>
 								</c:when>
+								<c:otherwise>
+								<td>Sunny Day</td>
+								</c:otherwise>
 								</c:choose>
-							<td>${i.advisory}</td>
 							
 							
 							

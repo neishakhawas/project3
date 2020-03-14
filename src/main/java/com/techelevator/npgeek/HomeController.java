@@ -51,9 +51,7 @@ public class HomeController {
 		List<DailyWeather> weather = dailyWeatherDAO.getDailyWeather(parkCode);
 		map.addAttribute("weather", weather);
 		
-		List<String> advisory = dailyWeatherDAO.getAdvisory();
-		map.addAttribute("advisory", advisory);
-
+		
 		return "detailpage";
 
 	}
