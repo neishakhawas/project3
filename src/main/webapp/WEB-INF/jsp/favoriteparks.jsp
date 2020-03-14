@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 
 <c:set var="pageTitle" value="favoriteparks"/>
 <%@include file="common/header.jsp" %>
@@ -8,7 +10,7 @@
 
 <div class="tile">
 				<p> ${park.parkName}</p>
-				<img src = "img/parks/${park.parkCode}.jpg"/>
+				<img src="img/parks/${fn:toLowerCase(parks.parkCode)}.jpg"/>
 				<p>${park.surveyCount}</p>	
 
 </div>
