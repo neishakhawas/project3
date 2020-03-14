@@ -43,8 +43,23 @@ public class JDBCDailyWeatherDAO implements DailyWeatherDAO {
 		weather.setHigh(results.getInt("high"));
 		weather.setForecast(results.getString("forecast"));
 		weather.setImgName(results.getString("forecast").replace(" ", ""));
-	
+		weather.setHighInC(results.getInt("high"));
+		weather.setLowInC(results.getInt("low"));
 		return weather;
+	}
+	
+	public List<String> getAdvisory() {
+		
+		List<String> advisory = new ArrayList<String>();
+		
+		
+		advisory.add("Snow and ice expected. Take precaution!");
+		advisory.add("Partly cloudy. Rain might be expected");
+		advisory.add("Cloudy. Rain in the forecast");
+		advisory.add("Rain expected. Get your umbrellas");
+		advisory.add("Sunny day. Enjoy the warm weather!!");
+
+		return advisory;
 	}
 
 }
