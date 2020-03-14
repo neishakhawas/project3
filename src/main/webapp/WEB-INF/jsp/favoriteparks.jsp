@@ -1,28 +1,38 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <c:set var="pageTitle" value="favoriteparks" />
 <%@include file="common/header.jsp"%>
 
 
-<%-- <c:forEach var="park" items="${favoriteList}">
+<c:forEach var="park" items="${favorite}">
+	<!-- set parks into table and each table row will be a link back to the park detail page  -->
+	<p>${park.parkName }</p>
 
-	<div class="columns">
-		<div class="column is-success">
-			<p class="bd-notification is-info">${park.parkName }</p>
-			<div class="columns is-mobile">
-				<div class="column">
-					<p class="bd-notification is-info">
-						<img src="/img/parks/${park.imgName}.jpg">
-					</p>
-				</div>
-				<div class="column is-half">
-					<p class="bd-notification is-info">${park.description}</p>
-				</div>
+<c:url var="dpu" value="detailspage">
+		<c:param name="parkCode" value="${parks.parkCode}" />
+	</c:url>
+
+	<div class="column">
+		<h2 class="title">${parks.parkName}</h2>
+
+
+		<div class="columns is-mobile">
+			<div class="column">
+				<p class="bd-notification is-info">
+
+					<c:url var="dpu" value="detailsPage">
+						<c:param name="parkCode" value="${parks.parkCode}" />
+					</c:url>
+					<a href="${dpu}"> <img
+						src="img/parks/${fn:toLowerCase(parks.parkCode)}.jpg"
+						alt="picture" width="65%" /> </a> 
+				</p>
 			</div>
+			
 		</div>
 	</div>
 
-
-</c:forEach> --%>
+</c:forEach>
 
 <%@include file="common/footer.jsp"%>
