@@ -81,10 +81,15 @@ public class HomeController {
 	public String submitSurvey(@Valid @ModelAttribute("survey") Survey userSurvey, HttpSession userSesh,
 			BindingResult userEntry, RedirectAttributes flash) {
 
+//
+//		if (userEntry.hasErrors()) {
+//			flash.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "survey" , userEntry);
+//			flash.addAttribute("survey", userSurvey);
+//
+//			return "redirect:/survey";
+//		}
 
-		
 		surveyDAO.createEntry(userSurvey);
-		
 		return "redirect:/favoriteparks";
 
 	}
@@ -93,9 +98,7 @@ public class HomeController {
 	public String goFavoriteParks(ModelMap map) {
 
 		List<Park> favoriteList = parkDAO.getFavoritesList();
-
 		map.addAttribute("favorite", favoriteList);
-
 		return "favoriteparks";
 
 	}

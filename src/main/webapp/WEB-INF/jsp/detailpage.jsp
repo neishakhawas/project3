@@ -40,7 +40,7 @@
 					<tr>
 						<th>Day</th>
 						<th>Forecast</th>
-						<th>Advisory</th>
+						<!-- <th>Advisory</th> -->
 						<th>Low</th>
 						<th>High</th>
 					</tr>
@@ -52,20 +52,14 @@
 							<td>${i.day}</td>
 							<td><img
 								src="<c:url value="/img/weather/${i.imgName}.png"/>" width="10%" /></td>
-								
-								<c:forEach var="j" items="${advisory}">
+
+							<%-- <c:forEach var="j" items="${advisory}">
 								<c:choose>
 								<c:when test="${i.forecast == 'snow' }">
 								<td>${j.advisory[0]}</td>
 								</c:when>
 								</c:choose>
-							<td>${i.advisory}</td>
-							
-							
-							
-							
-							
-							</c:forEach>
+							<td>${i.advisory}</td> </c:forEach> --%>
 						<c:choose>
 							
 							<c:when test="${param.tempChoice == 'F'}">

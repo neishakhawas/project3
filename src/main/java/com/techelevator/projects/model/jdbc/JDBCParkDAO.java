@@ -46,10 +46,10 @@ private ParkDAO parkDao;
 	@Override
 	public List<Park> getFavoritesList() {
 		
-	String sqlFav ="Select parkname, count(surveyid) as counting " + 
+	String sqlFav ="Select parkname, parkcode, count(surveyid) as counting " + 
 				" FROM survey_result " + 
 				" Left Join park using (parkcode) " + 
-				" group by parkname " + 
+				" group by parkname, parkcode " + 
 				" having count(surveyid) > 0 " + 
 				" order by count(surveyid) desc, parkname asc; ";
 		
@@ -78,7 +78,7 @@ private ParkDAO parkDao;
 	
 	private Park mapRowToPark(SqlRowSet result) {
 		Park parkInfo = new Park();
-		parkInfo.setParkCode(result.getString("parkcode"));
+		parkInfo.setParkCode(result.getString("parkCode"));
 		parkInfo.setParkName(result.getString("parkname"));
 		parkInfo.setState(result.getString("state"));
 		parkInfo.setAcreage(result.getInt("acreage"));
@@ -101,6 +101,7 @@ private ParkDAO parkDao;
 		Park parkInfo = new Park();
 		parkInfo.setParkName(result.getString("parkname"));
 		parkInfo.setSurveyCount(result.getInt("counting"));
+		parkInfo.setParkCode(result.getString("parkcode"));
 		return parkInfo;
 	}
 
