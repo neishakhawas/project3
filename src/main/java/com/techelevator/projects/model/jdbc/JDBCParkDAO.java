@@ -54,9 +54,7 @@ private ParkDAO parkDao;
 				" order by count(surveyid) desc, parkname asc; ";
 		
 		SqlRowSet favSet = jdbcTemplate.queryForRowSet(sqlFav);
-		
 		List<Park> favList = new ArrayList<Park>();
-		
 		while(favSet.next()) {
 			Park tempPark = new Park();
 			tempPark = mapRowToParkWithCount(favSet);
