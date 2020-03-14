@@ -4,14 +4,30 @@
 <c:set var="pageTitle" value="favoriteparks" />
 <%@include file="common/header.jsp"%>
 
-<c:forEach var="park" items="${favoriteList}">
+
+<table class = "table is-bordered is-hoverable">
+<thead>
+<tr>
+<th> Park</th>
+<th> Survey Count</th>
+</tr>
+</thead>
+<tbody>
+<c:forEach var="park" items="${favorite}">
+<tr>
+<td>${park.parkName}</td>
+<td> ${park.surveyCount }</td>
+</tr>
+</c:forEach>
+
+</tbody>
+</table>
 	
-		<p>${park.parkname}</p>
+	
 		
 		
 
 			
 		
-</c:forEach>
 
 <%@include file="common/footer.jsp"%>
